@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Flow</title>
+    <title>BDT WINX</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
@@ -164,7 +164,7 @@
     height: 60px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
+    align-itemsFnter;
     justify-content: center;
     margin: -50px auto 15px; /* বক্সের একটু উপরে থাকবে */
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -7917,18 +7917,83 @@ function abortCancelTimer() {
     </div>
 </div>
   
-  
-  <div id="p-vip" class="p-page d-none shadow" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6fb; z-index: 1500; overflow-y: auto; font-family: 'Poppins', sans-serif;">
+
+
+
+<div id="p-vip" class="p-page shadow" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6fb; z-index: 1500; overflow-y: auto; font-family: 'Poppins', sans-serif; display: none;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Top Red-Yellow Header -->
-    <div style="background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%); padding: 15px 15px 40px 15px; color: white;">
+    <style>
+      .btn-receive {
+    background: linear-gradient(135deg, #ff2d2d, #ff8c00);
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(255, 45, 45, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* ডিজেবল অবস্থায় বাটন যেমন দেখাবে */
+.btn-receive.disabled, 
+.btn-receive:disabled {
+    background: #b0bec5 !important; /* হালকা কালো/ধূসর কালার */
+    color: #ffffff !important;
+    opacity: 0.7;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    pointer-events: none; /* ক্লিকের কাজ বন্ধ করার জন্য */
+}
+        /* VIP Card Horizontal Slider Styles */
+        .vip-card-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .vip-card-slider::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+        .vip-card-item {
+            min-width: 85%;
+            scroll-snap-align: center;
+            background: linear-gradient(135deg, #ff2d2d 0%, #ffb400 100%);
+            border-radius: 16px;
+            padding: 16px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255,45,45,0.25);
+            flex-shrink: 0;
+        }
+        .btn-receive {
+            background: linear-gradient(135deg, #ff2d2d, #ff8c00);
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(255, 45, 45, 0.3);
+        }
+        .btn-receive:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #ff2d2d 0%, #ffb400 100%); padding: 15px 15px 45px 15px; color: white;">
         <div style="display: flex; align-items: center; margin-bottom: 15px;">
-            <i class="fas fa-chevron-left" style="font-size: 18px; cursor: pointer;" onclick="openPage('p-account')"></i>
+            <i class="fas fa-chevron-left" style="font-size: 18px; cursor: pointer;" onclick="closeVipPage()"></i>
             <h2 style="font-size: 16px; font-weight: 700; margin: 0 auto;">VIP</h2>
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff4e50; border: 2px solid rgba(255,255,255,0.8);">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff2d2d; border: 2px solid rgba(255,255,255,0.8); overflow: hidden;">
                 <i class="fas fa-user"></i>
             </div>
             <div>
@@ -7940,96 +8005,326 @@ function abortCancelTimer() {
         </div>
     </div>
 
-    <div style="padding: 0 15px; margin-top: -25px; max-width: 480px; margin-left: auto; margin-right: auto;">
-        <!-- EXP & Payout Stats -->
+    <!-- Main Container -->
+    <div style="padding: 0 15px; margin-top: -30px; max-width: 480px; margin-left: auto; margin-right: auto;">
+        
+        <!-- EXP & Payout Stats (Zeroed) -->
         <div style="display: flex; gap: 10px; margin-bottom: 12px;">
             <div style="flex: 1; background: white; padding: 12px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size: 15px; font-weight: 800; color: #ff4e50;">4550 EXP</div>
+                <div style="font-size: 15px; font-weight: 800; color: #ff2d2d;">0 EXP</div>
                 <div style="font-size: 10px; color: #7f8c8d; margin-top: 2px;">My experience</div>
             </div>
             <div style="flex: 1; background: white; padding: 12px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                <div style="font-size: 15px; font-weight: 800; color: #ff4e50;">5 Days</div>
+                <div style="font-size: 15px; font-weight: 800; color: #ff2d2d;">0 Days</div>
                 <div style="font-size: 10px; color: #7f8c8d; margin-top: 2px;">Payout time</div>
             </div>
         </div>
-
         <div style="font-size: 10px; color: #95a5a6; text-align: center; margin-bottom: 12px;">VIP level rewards are settled at 2:00 am on the 1st of every month</div>
 
-        <!-- VIP1 Card -->
-        <div style="background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); border-radius: 14px; padding: 16px; color: white; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(102,166,255,0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-size: 18px; font-weight: 800;">VIP1 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
-                <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
-            </div>
-            <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP1 requires 450EXP</div>
-            <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
-            
-            <div style="margin-top: 15px;">
-                <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
-                    <div style="width: 90%; height: 100%; background: #f9d423;"></div>
+        <!-- VIP Card Horizontal Slider (10 Cards) -->
+        <div class="vip-card-slider" id="vipCardSlider">
+            <!-- VIP 1 -->
+            <div class="vip-card-item" data-level="VIP1">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP1 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
-                    <span>4550/5000</span>
-                    <span>5000 EXP can be leveled up</span>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP1 requires 500 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/500</span> <span>500 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 2 -->
+            <div class="vip-card-item" data-level="VIP2">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP2 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP2 requires 2,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/2000</span> <span>2000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 3 -->
+            <div class="vip-card-item" data-level="VIP3">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP3 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP3 requires 5,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/5000</span> <span>5000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 4 -->
+            <div class="vip-card-item" data-level="VIP4">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP4 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP4 requires 15,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/15000</span> <span>15000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 5 -->
+            <div class="vip-card-item" data-level="VIP5">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP5 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP5 requires 30,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/30000</span> <span>30000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 6 -->
+            <div class="vip-card-item" data-level="VIP6">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP6 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP6 requires 60,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/60000</span> <span>60000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 7 -->
+            <div class="vip-card-item" data-level="VIP7">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP7 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP7 requires 100,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/100000</span> <span>100000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 8 -->
+            <div class="vip-card-item" data-level="VIP8">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP8 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP8 requires 200,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/200000</span> <span>200000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 9 -->
+            <div class="vip-card-item" data-level="VIP9">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP9 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP9 requires 500,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/500000</span> <span>500000 EXP can be leveled up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP 10 -->
+            <div class="vip-card-item" data-level="VIP10">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 18px; font-weight: 800;">VIP10 <span style="font-size: 10px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; font-weight: 400;"><i class="fas fa-lock"></i> Not open yet</span></div>
+                    <i class="fas fa-crown" style="font-size: 28px; opacity: 0.8;"></i>
+                </div>
+                <div style="font-size: 11px; margin-top: 6px; opacity: 0.9;">Upgrading VIP10 requires 1,000,000 EXP</div>
+                <div style="background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-size: 10px; display: inline-block; margin-top: 10px;">Bet ৳1=1EXP</div>
+                <div style="margin-top: 15px;">
+                    <div style="background: rgba(255,255,255,0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: #ffb400;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 9px; margin-top: 4px; opacity: 0.9;">
+                        <span>0/1000000</span> <span>1000000 EXP can be leveled up</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIP Benefits List -->
-        <div style="background: white; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <!-- VIP Benefits Section -->
+        <div style="background: white; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); margin-top: 10px; margin-bottom: 20px;">
             <div style="font-size: 13px; font-weight: 700; color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center; gap: 6px;">
-                <i class="fas fa-gem" style="color: #ff4e50;"></i> VIP1 Benefits level
+                <i class="fas fa-gem" style="color: #ff2d2d;"></i> <span id="vipTitle">VIP1 Benefits level</span>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 10px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #fff3e0; color: #ff9800; display: flex; align-items: center; justify-content: center; font-size: 18px;"><i class="fas fa-gift"></i></div>
-                    <div>
-                        <div style="font-size: 12px; font-weight: 700; color: #333;">Level up rewards</div>
-                        <div style="font-size: 10px; color: #95a5a6;">Each account can only receive 1 time</div>
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <span style="background: #fff8e1; color: #ffa000; border: 1px solid #ffe082; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;">💰 30</span>
-                </div>
-            </div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 10px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #ffebee; color: #ff5252; display: flex; align-items: center; justify-content: center; font-size: 18px;"><i class="fas fa-calendar-alt"></i></div>
-                    <div>
-                        <div style="font-size: 12px; font-weight: 700; color: #333;">Monthly reward</div>
-                        <div style="font-size: 10px; color: #95a5a6;">Each account can only receive 1 time per month</div>
-                    </div>
-                </div>
-                <div><span style="background: #fff8e1; color: #ffa000; border: 1px solid #ffe082; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;">💰 0</span></div>
-            </div>
+          <!-- Level Up Rewards -->
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 12px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #fff3e0; color: #ff9800; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-gift"></i></div>
+        <div>
+            <div style="font-size: 12px; font-weight: 700; color: #333;">Level up rewards</div>
+            <div style="font-size: 10px; color: #95a5a6;">Each account can only receive 1 time</div>
+        </div>
+    </div>
+    <div style="text-align: right;">
+        <div style="font-size: 12px; font-weight: 700; color: #ff9800; margin-bottom: 4px;">💰 <span id="bonusLevelUp">30</span></div>
+        <button class="btn-receive disabled" disabled onclick="receiveReward('Level up rewards')">Receive</button>
+    </div>
+</div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 10px;">
+<!-- Monthly Reward -->
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 12px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #fff3e0; color: #ff9800; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-star"></i></div>
+        <div>
+            <div style="font-size: 12px; font-weight: 700; color: #333;">Monthly reward</div>
+            <div style="font-size: 10px; color: #95a5a6;">Each account can only receive 1 time per month</div>
+        </div>
+    </div>
+    <div style="text-align: right;">
+        <div style="font-size: 12px; font-weight: 700; color: #ff9800; margin-bottom: 4px;">💰 <span id="bonusMonthly">10</span></div>
+        <button class="btn-receive disabled" disabled onclick="receiveReward('Monthly reward')">Receive</button>
+    </div>
+</div>
+            <!-- Safe -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f8f9fa; padding-bottom: 12px;">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #e8eaf6; color: #3f51b5; display: flex; align-items: center; justify-content: center; font-size: 18px;"><i class="fas fa-vault"></i></div>
+                    <div style="width: 40px; height: 40px; border-radius: 10px; background: #e3f2fd; color: #2196f3; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-vault"></i></div>
                     <div>
                         <div style="font-size: 12px; font-weight: 700; color: #333;">Safe</div>
                         <div style="font-size: 10px; color: #95a5a6;">Increase the extra income of the safe</div>
                     </div>
                 </div>
-                <i class="fas fa-shield-alt" style="color: #ff5252;"></i>
+                <span style="background: #ffebee; color: #ff2d2d; font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: 700;" id="safeRate">0.1%</span>
             </div>
 
+            <!-- Rebate Rate -->
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #e0f2f1; color: #009688; display: flex; align-items: center; justify-content: center; font-size: 18px;"><i class="fas fa-percentage"></i></div>
+                    <div style="width: 40px; height: 40px; border-radius: 10px; background: #fff8e1; color: #ffb300; display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fas fa-coins"></i></div>
                     <div>
                         <div style="font-size: 12px; font-weight: 700; color: #333;">Rebate rate</div>
                         <div style="font-size: 10px; color: #95a5a6;">Increase income of rebate</div>
                     </div>
                 </div>
-                <span style="background: #ffebee; color: #ff5252; border: 1px solid #ffcdd2; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;">0.6%</span>
+                <span style="background: #ffebee; color: #ff2d2d; font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: 700;" id="rebateRate">0.6%</span>
             </div>
         </div>
+
+       
     </div>
 </div>
 
+<script>
+    // VIP 1 to 10 Reward Data
+    const vipData = {
+        'VIP1': { levelUp: 30, monthly: 10, safe: '0.1%', rebate: '0.6%' },
+        'VIP2': { levelUp: 60, monthly: 25, safe: '0.2%', rebate: '0.7%' },
+        'VIP3': { levelUp: 120, monthly: 50, safe: '0.3%', rebate: '0.8%' },
+        'VIP4': { levelUp: 250, monthly: 100, safe: '0.4%', rebate: '0.9%' },
+        'VIP5': { levelUp: 500, monthly: 200, safe: '0.5%', rebate: '1.0%' },
+        'VIP6': { levelUp: 1000, monthly: 400, safe: '0.6%', rebate: '1.2%' },
+        'VIP7': { levelUp: 2000, monthly: 800, safe: '0.7%', rebate: '1.4%' },
+        'VIP8': { levelUp: 4000, monthly: 1500, safe: '0.8%', rebate: '1.6%' },
+        'VIP9': { levelUp: 8000, monthly: 3000, safe: '0.9%', rebate: '1.8%' },
+        'VIP10': { levelUp: 15000, monthly: 6000, safe: '1.0%', rebate: '2.0%' }
+    };
+
+    const slider = document.getElementById('vipCardSlider');
+
+    // Dynamically update benefits on scroll
+    slider.addEventListener('scroll', () => {
+        const cardWidth = slider.querySelector('.vip-card-item').offsetWidth;
+        const activeIndex = Math.round(slider.scrollLeft / cardWidth);
+        const cards = slider.querySelectorAll('.vip-card-item');
+        
+        if (cards[activeIndex]) {
+            const level = cards[activeIndex].getAttribute('data-level');
+            if (vipData[level]) {
+                document.getElementById('vipTitle').innerText = `${level} Benefits level`;
+                document.getElementById('bonusLevelUp').innerText = vipData[level].levelUp;
+                document.getElementById('bonusMonthly').innerText = vipData[level].monthly;
+                document.getElementById('safeRate').innerText = vipData[level].safe;
+                document.getElementById('rebateRate').innerText = vipData[level].rebate;
+            }
+        }
+    });
+
+    // Control page visibility functions
+    function openVipPage() {
+        document.getElementById('p-vip').style.display = 'block';
+    }
+
+    function closeVipPage() {
+        document.getElementById('p-vip').style.display = 'none';
+        if(typeof openPage === 'function') {
+            openPage('p-account');
+        }
+    }
+
+    function receiveReward(type) {
+        alert(`${type} received successfully!`);
+    }
+</script>
+
+
+
+
+    
   
 <div id="p-game-stats" class="p-page d-none shadow" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6fb; z-index: 1500; overflow-y: auto; font-family: 'Poppins', sans-serif;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -9602,22 +9897,53 @@ function closeSuccessPopup() {
 
 
 <!-- ================= 6. GIFTS CLAIM SUB-PAGE (p-gifts-claim) ================= -->
-<div id="p-gifts-claim" class="p-page d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6fb; z-index: 1510; overflow-y: auto;">
-    <div class="subpage-header">
-        <i class="fas fa-chevron-left" style="cursor: pointer; font-size: 16px;" onclick="openPage('p-activity')"></i>
-        <h2 class="subpage-title">Gift</h2>
-        <div style="width: 16px;"></div>
+<div id="p-gifts-claim" class="p-page d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f8f9fd; z-index: 1510; overflow-y: auto; font-family: sans-serif;">
+    
+    <!-- Header -->
+    <div class="subpage-header" style="background: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f0f0f0;">
+        <i class="fas fa-chevron-left" style="cursor: pointer; font-size: 18px; color: #333;" onclick="openPage('p-activity')"></i>
+        <h2 class="subpage-title" style="margin: 0; font-size: 18px; font-weight: 600; color: #222;">Gift</h2>
+        <div style="width: 18px;"></div>
     </div>
-    <div style="padding: 15px;">
-        <div style="background: white; border-radius: 12px; padding: 20px;">
-            <div style="font-size: 13px; color: #333; font-weight: 600; margin-bottom: 12px;">Please enter the gift code below</div>
-            <input type="text" placeholder="Please enter gift code" style="width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 8px; font-size: 12px; box-sizing: border-box; outline: none; background: #f9f9f9;">
-            <button style="background: #ff5252; color: white; border: none; width: 100%; padding: 12px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-top: 15px;">Receive</button>
-        </div>
-    </div>
+<!-- Banner Cover Photo (Red-Yellow Background Container) -->
+<div style="width: 100%; height: 190px; overflow: hidden; background: linear-gradient(135deg, #ffeaa7, #ff7675);">
+    <img src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/IMG_20260828_171959_846.png" alt="Gift Banner" style="width: 100%; height: 100%; object-fit: cover;">
 </div>
 
+    <div style="padding: 15px; margin-top: -10px; position: relative; z-index: 2;">
+        
+        <!-- Gift Claim Card -->
+        <div style="background: white; border-radius: 16px; padding: 22px 20px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+            <div style="font-size: 18px; color: #333; font-weight: 600; margin-bottom: 6px;">Hi</div>
+            <div style="font-size: 14px; color: #888; margin-bottom: 24px;">We have a gift for you</div>
 
+            <div style="font-size: 14px; color: #333; font-weight: 600; margin-bottom: 12px;">Please enter the gift code below</div>
+            
+            <input type="text" placeholder="Please enter gift code" style="width: 100%; padding: 14px 18px; border: 1px solid #f1f2f6; border-radius: 30px; font-size: 13px; box-sizing: border-box; outline: none; background: #f8f9fd; margin-bottom: 20px; transition: 0.3s;">
+            
+            <!-- Red-Yellow Mixed Gradient Button -->
+            <button style="background: linear-gradient(90deg, #ff7675 0%, #ff9f43 100%); color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 118, 117, 0.35);">Receive</button>
+        </div>
+
+        <!-- History Section -->
+        <div style="background: white; border-radius: 16px; padding: 20px; min-height: 240px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 16px; color: #333; font-weight: 600; margin-bottom: 30px;">
+                <!-- Red-Yellow Icon Styling -->
+                <i class="fas fa-calendar-alt" style="background: linear-gradient(135deg, #ff7675, #ff9f43); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 18px;"></i>
+                <span>History</span>
+            </div>
+
+            <!-- Empty State / No Data View -->
+            <div style="text-align: center; padding: 20px 0;">
+                <div style="width: 100px; height: 80px; margin: 0 auto 15px; opacity: 0.6; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-scroll" style="font-size: 65px; color: #dcdde1;"></i>
+                </div>
+                <div style="color: #a4b0be; font-size: 13px;">No data</div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <!-- ================= 7. ATTENDANCE BONUS SUB-PAGE (p-attendance-bonus) ================= -->
 <div id="p-attendance-bonus" class="p-page d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6fb; z-index: 1510; overflow-y: auto;">
     <div class="subpage-header">
@@ -9628,7 +9954,7 @@ function closeSuccessPopup() {
     <div style="background: #ff5252; padding: 20px; color: white;">
         <h3 style="margin: 0; font-size: 16px;">Attendance bonus</h3>
         <p style="font-size: 10px; opacity: 0.9; margin-top: 4px;">Get rewards based on consecutive login days</p>
-        <div style="font-size: 24px; font-weight: 800; margin-top: 10px;">৳16.00</div>
+        <div style="font-size: 24px; font-weight: 800; margin-top: 10px;">৳0.00</div>
     </div>
     <div style="padding: 15px;">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
@@ -9644,10 +9970,35 @@ function closeSuccessPopup() {
                 <div style="font-size: 12px; font-weight: 700; color: #ff9800;">৳65.00</div>
                 <div style="font-size: 10px; color: #777; margin-top: 4px;">3 Day</div>
             </div>
+
+
+<div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #ff9800;">৳100.00</div>
+                <div style="font-size: 10px; color: #777; margin-top: 4px;">4 Day</div>
+            </div>
+
+
+          
+<div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #ff9800;">200.00</div>
+                <div style="font-size: 10px; color: #777; margin-top: 4px;">5 Day</div>
+            </div>
+
+<div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #ff9800;">৳500.00</div>
+                <div style="font-size: 10px; color: #777; margin-top: 4px;">6 Day</div>
+            </div>
+          <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #ff9800;">৳1000.00</div>
+                <div style="font-size: 10px; color: #777; margin-top: 4px;">7 Day</div>
+            </div>
+          
         </div>
         <button style="background: #ff5252; color: white; border: none; width: 100%; padding: 12px; border-radius: 25px; font-weight: 700; font-size: 14px;">Attendance</button>
     </div>
 </div>
+
+
 
 
 
