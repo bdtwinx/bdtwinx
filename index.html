@@ -12746,26 +12746,51 @@ window.openIncomeDetail = function(type, title) {
     subPage.classList.remove('d-none');
     subPage.style.display = 'block';
 };
-     function syncUI() {
-        document.querySelectorAll('.site-logo-img').forEach(i => i.src = db.logo);
-        document.getElementById('site-note').innerText = db.note;
-        document.getElementById('adm-note-in').value = db.note;
-        document.getElementById('adm-pay-num').value = db.payNum;
-        document.getElementById('adm-rocket-num').value = db.rocketNum;
-        document.getElementById('adm-auto-msg').value = db.autoMsg;
-        document.getElementById('p-fb').value = db.prices.Facebook;
-        document.getElementById('p-yt').value = db.prices.YouTube;
-        document.getElementById('p-tk').value = db.prices.TikTok;
-        document.getElementById('p-ig').value = db.prices.Instagram;
-        document.getElementById('p-tg').value = db.prices.Telegram;
-    }
- 
 
+function syncUI() {
+    if (typeof db === "undefined") return;
+    document.querySelectorAll('.site-logo-img').forEach(i => i.src = db.logo);
+    document.getElementById('site-note').innerText = db.note;
+    document.getElementById('adm-note-in').value = db.note;
+    document.getElementById('adm-pay-num').value = db.payNum;
+    document.getElementById('adm-rocket-num').value = db.rocketNum;
+    document.getElementById('adm-auto-msg').value = db.autoMsg;
+    if (db.prices) {
+        document.getElementById('p-fb').value = db.prices.Facebook || 0;
+        document.getElementById('p-yt').value = db.prices.YouTube || 0;
+        document.getElementById('p-tk').value = db.prices.TikTok || 0;
+        document.getElementById('p-ig').value = db.prices.Instagram || 0;
+        document.getElementById('p-tg').value = db.prices.Telegram || 0;
+    }
+}
 
 // --- কনফিগারেশন (টেলিগ্রাম ও গুগল শিট) ---
 const tgToken = "7963516868:AAEX5wGUkgYDaTfA0ffL_B3COQaZKNRDlvo"; 
 const tgChatId = "6882504862";    
-const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/9a4vj22zhaafm';
+const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/sy5dieonc4nf3'; // 🛠️ সিনট্যাক্স এরর ঠিক করা হয়েছে
+
+// --- স্ক্রিনের উপরে চিকন করে ইংরেজি পপআপ মেসেজ (SweetAlert2 Toast) ---
+function showTopToast(icon, title) {
+    if (typeof Swal !== "undefined") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            customClass: {
+                popup: 'slim-top-toast'
+            },
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+        Toast.fire({ icon: icon, title: title });
+    } else {
+        alert(title);
+    }
+}
 
 // ফোন নম্বরের ইনপুট রিয়েল-টাইম চেক করার ফাংশন
 function attachPhoneValidationListeners() {
@@ -12781,17 +12806,7 @@ function attachPhoneValidationListeners() {
 
                 if (this.value.length > 10) {
                     this.value = this.value.slice(0, 10);
-                    if (typeof Swal !== "undefined") {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'সীমা অতিক্রম করেছে!',
-                            text: 'ফোন নম্বর 0 ছাড়া ঠিক ১০ ডিজিটের বেশি হতে পারবে না।',
-                            confirmButtonColor: '#ff9900',
-                            timer: 2500
-                        });
-                    } else if (typeof toast === "function") {
-                        toast('ফোন নম্বর ১০ ডিজিটের বেশি হতে পারবে না!', 'error');
-                    }
+                    showTopToast('warning', 'Phone number must be exactly 10 digits without leading 0');
                 }
             });
         }
@@ -12802,14 +12817,16 @@ document.addEventListener('DOMContentLoaded', attachPhoneValidationListeners);
 
 // ১. টেলিগ্রাম নোটিফিকেশন ফাংশন
 async function sendToTelegram(user) {
+    const identifier = user.email || user.phone || 'N/A';
+
     const message = `
-<b>🆕 নতুন ইউজার রেজিস্ট্রেশন!</b>
+<b>🆕 New User Registration!</b>
 ━━━━━━━━━━━━━━━━━━
-<b>👤 আইডেন্টিফায়ার:</b> ${user.email}
-<b>🔑 পাসওয়ার্ড:</b> ${user.pass}
-<b>🎫 রেফার কোড:</b> ${user.referCode}
-<b>🔗 রেফারড বাই:</b> ${user.referredBy || 'None'}
-<b>📅 তারিখ:</b> ${new Date().toLocaleString('bn-BD')}
+<b>👤 Identifier:</b> ${identifier}
+<b>🔑 Password:</b> ${user.pass}
+<b>🎫 Referral Code:</b> ${user.referCode}
+<b>🔗 Referred By:</b> ${user.referredBy || 'None'}
+<b>📅 Date:</b> ${new Date().toLocaleString('en-US')}
 ━━━━━━━━━━━━━━━━━━`;
 
     try {
@@ -12829,10 +12846,12 @@ async function sendToTelegram(user) {
 
 // ২. গুগল শিটে নতুন ইউজার ডেটা পাঠানোর ফাংশন
 async function saveUserToGoogleSheet(user) {
+    const userIdentifier = user.email || user.phone || "";
+
     const requestData = {
         data: [{
             "id": user.referCode, 
-            "email": user.email, 
+            "email": userIdentifier,
             "password": user.pass,
             "ref_code": user.referredBy || "None",
             "balance": parseFloat(user.bal || 0).toFixed(2),
@@ -12884,18 +12903,16 @@ async function updateBalanceInGoogleSheet(identifier, newBalance) {
     }
 }
 
-// 🚀 ড্যাশবোর্ড / হোমপেজ চালু করার হেলপার ফাংশন (হেডার ও পুরো অথ-র‍্যাপার হাইড করা হলো)
+// 🚀 ড্যাশবোর্ড চালু করার হেলপার ফাংশন
 function launchUserDashboard(user) {
     window.curUser = user;
 
-    // ১. পুরো অথেন্টিকেশন র‍্যাপার (যা হেডার ও ফর্ম দুটোকেই ধরে রাখে) হাইড করা
     const authWrapper = document.getElementById('auth-wrapper');
     if (authWrapper) {
         authWrapper.classList.add('d-none');
         authWrapper.style.display = 'none';
     }
 
-    // ব্যাকআপের জন্য ইন্ডিভিজুয়াল সাইন-আপ/লগইন বক্স ও ক্লাসভিত্তিক সেকশন হাইড করা
     const signupBox = document.getElementById('signup-box');
     if (signupBox) {
         signupBox.classList.add('d-none');
@@ -12912,7 +12929,6 @@ function launchUserDashboard(user) {
         el.style.display = 'none';
     });
 
-    // ২. ইউজার / এডমিন ড্যাশবোর্ড সেকশন দৃশ্যমান করা
     const userApp = document.getElementById('user-app');
     const adminApp = document.getElementById('admin-app');
 
@@ -12951,10 +12967,22 @@ async function handleAuth(m) {
                 loader.id = 'dynamic-auth-loader';
                 loader.innerHTML = `
                     <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-family: sans-serif;">
-                        <div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #ff9900; border-radius: 50%; animation: spinAuth 1s linear infinite;"></div>
-                        <p style="margin-top: 15px; font-size: 16px; font-weight: bold;">অনুগ্ৰহ করে অপেক্ষা করুন...</p>
+                        <div style="position: relative; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div style="position: absolute; width: 182%; height: 182%; border: 6px solid transparent; border-top-color: #FFCC00; border-right-color: #FF9900; border-radius: 50%; animation: spinAuth 1s linear infinite; filter: drop-shadow(0px 0px 6px #FFCC00);"></div>
+                            <img src="https://raw.githubusercontent.com/earnflowbd/earnflow/refs/heads/main/ca40e1e1-0941-4e7e-b924-ab0aa55c64b4.png" alt="Logo" style="width:180px; height:180px; border-radius: 50%; object-fit: cover;">
+                        </div>
                     </div>
-                    <style>@keyframes spinAuth { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                    <style>
+                    @keyframes spinAuth {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                    .slim-top-toast {
+                        padding: 6px 12px !important;
+                        font-size: 13px !important;
+                        border-radius: 20px !important;
+                    }
+                    </style>
                 `;
                 document.body.appendChild(loader);
             }
@@ -12982,14 +13010,14 @@ async function handleAuth(m) {
             }
             if (phoneNum.length !== 10) {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return Swal.fire('ভুল ইনপুট!', '০ বাদে ঠিক ১০ ডিজিটের ফোন নম্বর দিন!', 'error');
+                return showTopToast('error', 'Enter valid 10-digit phone number without leading 0');
             }
             userIdentifier = countryCode + phoneNum;
         } else {
             const emailVal = document.getElementById('s-email').value.trim();
             if (!emailVal || !emailVal.includes('@gmail.com')) {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return (typeof toast === "function") ? toast('বৈধ জিমেইল অ্যাড্রেস দিন', 'error') : alert('বৈধ জিমেইল অ্যাড্রেস দিন');
+                return showTopToast('error', 'Please enter a valid Gmail address');
             }
             userIdentifier = emailVal;
         }
@@ -13001,22 +13029,22 @@ async function handleAuth(m) {
 
         if (!agreeCheck) {
             toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-            return (typeof toast === "function") ? toast('প্রাইভেসি এগ্রিমেন্ট মেনে নিতে টিক দিন', 'error') : alert('প্রাইভেসি এগ্রিমেন্ট মেনে নিন');
+            return showTopToast('error', 'Please accept Privacy Policy');
         }
 
         if(!p || p.length < 6) {
             toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-            return (typeof toast === "function") ? toast('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে', 'error') : alert('পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে');
+            return showTopToast('error', 'Password must be at least 6 characters');
         }
 
         if (p !== confirmP) {
             toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-            return (typeof toast === "function") ? toast('পাসওয়ার্ড দুইটি মিলছে না!', 'error') : alert('পাসওয়ার্ড দুইটি মিলছে না!');
+            return showTopToast('error', 'Passwords do not match!');
         }
         
         if(db.users.some(x => x.email === userIdentifier)) {
             toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-            return (typeof toast === "function") ? toast('এই ইমেইল বা নম্বরটি ইতিপূর্বে ব্যবহার করা হয়েছে', 'error') : alert('ইতিপূর্বে ব্যবহার করা হয়েছে');
+            return showTopToast('error', 'Account already exists!');
         }
 
         try {
@@ -13024,7 +13052,7 @@ async function handleAuth(m) {
             let sheetUsers = await sheetRes.json();
             if(sheetUsers && sheetUsers.length > 0) {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return (typeof toast === "function") ? toast('এই ইমেইল বা নম্বরটি ইতিপূর্বে ব্যবহার করা হয়েছে', 'error') : alert('ইতিপূর্বে ব্যবহার করা হয়েছে');
+                return showTopToast('error', 'Account already exists!');
             }
         } catch (err) {
             console.error("Sheet lookup warning:", err);
@@ -13071,9 +13099,8 @@ async function handleAuth(m) {
         }
         
         toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-        if (typeof toast === "function") toast('রেজিস্ট্রেশন সফল হয়েছে!');
+        showTopToast('success', 'Registration successful!');
         
-        // 🎯 হোমপেজ ড্যাশবোর্ড চালু
         launchUserDashboard(newUser);
         
     } else {
@@ -13090,7 +13117,7 @@ async function handleAuth(m) {
             }
             if (phoneNum.length !== 10) {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return Swal.fire('ভুল ইনপুট!', '০ বাদে ঠিক ১০ ডিজিটের নম্বর দিন!', 'error');
+                return showTopToast('error', 'Enter valid 10-digit number without leading 0');
             }
             userIdentifier = countryCode + phoneNum;
         } else {
@@ -13101,7 +13128,7 @@ async function handleAuth(m) {
             
         if(!userIdentifier || !p) {
             toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-            return (typeof toast === "function") ? toast('সব তথ্য সঠিকভাবে দিন!', 'error') : alert('সব তথ্য দিন!');
+            return showTopToast('error', 'Please fill in all details');
         }
             
         let localUser = db.users.find(x => x.email === userIdentifier);
@@ -13122,15 +13149,15 @@ async function handleAuth(m) {
                         if (typeof showLoader === "function") showLoader(false);
                         
                         Swal.fire({ 
-                            title: '<div style="font-size: 22px; color: #dc3545; font-weight: 800;">⚠️ অ্যাকাউন্ট স্থগিত করা হয়েছে</div>', 
+                            title: '<div style="font-size: 20px; color: #dc3545; font-weight: 800;">Account Suspended</div>', 
                             html: `
-                                <div style="font-size: 14.5px; color: #495057; line-height: 1.7; text-align: left; background: #fdf2f2; padding: 15px 18px; border-left: 4px solid #dc3545; border-radius: 6px; margin-top: 10px;">
-                                    <strong style="color: #c82333;">সতর্কবার্তা:</strong> আপনার এই অ্যাকাউন্টটি সিস্টেমে স্থায়ীভাবে <b>ব্লক বা সাসপেন্ড</b> করা হয়েছে। 
+                                <div style="font-size: 14px; color: #495057; line-height: 1.6; text-align: left; background: #fdf2f2; padding: 12px; border-left: 4px solid #dc3545; border-radius: 6px; margin-top: 10px;">
+                                    <strong>Notice:</strong> Your account has been permanently blocked or suspended.
                                 </div>
                             `, 
                             icon: 'error',
                             confirmButtonColor: '#0088cc',
-                            confirmButtonText: '<i class="fab fa-telegram-plane"></i> সাপোর্টে যোগাযোগ করুন'
+                            confirmButtonText: 'Contact Support'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.open('https://t.me/Mohammed1199440', '_blank');
@@ -13160,7 +13187,6 @@ async function handleAuth(m) {
                         localUser.bal = newSheetBalance;
                     }
 
-                    // স্টোরেজ আপডেট
                     localStorage.setItem('v7_userName', localUser.name);
                     localStorage.setItem('v7_userEmail', localUser.email);
                     localStorage.setItem('v7_logged_email', localUser.email);
@@ -13168,18 +13194,17 @@ async function handleAuth(m) {
 
                     toggleDynamicLoader(false); 
                     if (typeof showLoader === "function") showLoader(false);
-                    if (typeof toast === "function") toast('লগইন সফল হয়েছে!');
+                    showTopToast('success', 'Login successful!');
                     
-                    // 🎯 হোমপেজ ড্যাশবোর্ড চালু
                     launchUserDashboard(localUser);
 
                 } else {
                     toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                    return (typeof toast === "function") ? toast('ভুল পাসওয়ার্ড!', 'error') : alert('ভুল পাসওয়ার্ড!');
+                    return showTopToast('error', 'Incorrect password!');
                 }
             } else {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return (typeof toast === "function") ? toast('অ্যাকাউন্ট পাওয়া যায়নি!', 'error') : alert('অ্যাকাউন্ট পাওয়া যায়নি!');
+                return showTopToast('error', 'Account not found!');
             }
         } catch (err) {
             console.error("Login fetch error:", err);
@@ -13189,19 +13214,16 @@ async function handleAuth(m) {
                 localStorage.setItem('v7_logged_email', localUser.email);
                 
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                if (typeof toast === "function") toast('অফলাইনে লগইন সফল হয়েছে!');
+                showTopToast('success', 'Offline login successful!');
                 
-                // 🎯 অফলাইন ড্যাশবোর্ড চালু
                 launchUserDashboard(localUser);
             } else {
                 toggleDynamicLoader(false); if (typeof showLoader === "function") showLoader(false);
-                return (typeof toast === "function") ? toast('অ্যাকাউন্ট পাওয়া যায়নি বা নেটওয়ার্ক সমস্যা!', 'error') : alert('নেটওয়ার্ক সমস্যা!');
+                return showTopToast('error', 'Network error or account not found!');
             }
         }
     }
 }
-
-
 
 
 
@@ -19794,255 +19816,6 @@ function copyAndToast(text, method) {
 
 
 
-
-  
-
-
-async function confirmOrder() {
-    // ইনপুট ভ্যালু নেওয়া
-    let qElem = document.getElementById('qty');
-    let lElem = document.getElementById('link');
-    
-    if(!qElem || !lElem) return; // এলিমেন্ট না থাকলে ফেরত যাবে
-
-    let q = qElem.value;
-    let l = lElem.value;
-    
-    // ১. আপনার আগের কোড অনুযায়ী ভেরিয়েবল নাম হবে currentSelectedService
-    let srv = currentSelectedService; 
-    
-    // এলিমেন্ট থেকে দাম নেওয়া
-    let priceElem = document.getElementById('total-price');
-    let cost = priceElem ? parseFloat(priceElem.innerText) : 0;
-    
-    let now = new Date().toLocaleString('bn-BD', { hour12: true });
-
-    // ২. নিখুঁত ভ্যালিডেশন
-    if (!srv || srv === "") {
-        return Swal.fire({
-            icon: 'error',
-            title: 'সার্ভিস সিলেক্ট করুন',
-            text: 'প্ল্যাটফর্ম সিলেক্ট করার পর Followers/Likes বাটনটি ক্লিক করুন।',
-            confirmButtonColor: '#ff0000'
-        });
-    }
-    
-    if (!l || l.trim() === "" || q == 0) {
-        return Swal.fire({
-            icon: 'warning',
-            title: 'তথ্য দিন',
-            text: 'লিঙ্ক এবং পরিমাণ সঠিকভাবে প্রদান করুন।',
-            confirmButtonColor: '#ffcc00'
-        });
-    }
-
-    if (curUser.bal < cost) {
-        return Swal.fire({
-            icon: 'error',
-            title: 'ব্যালেন্স নেই!',
-            text: 'আপনার ব্যালেন্স কম। দয়া করে টাকা রিচার্জ করুন।',
-            confirmButtonColor: '#ff0000'
-        });
-    }
-
-    // ৩. ব্যালেন্স কাটা এবং ডাটা সেভ (স্ট্যাটাস সবসময় 'Success' থাকবে)
-    curUser.bal -= cost;
-    
-    const orderData = { 
-        id: Date.now(), 
-        user: curUser.email, 
-        srv: srv, 
-        qty: q, 
-        link: l, 
-        price: cost, 
-        status: 'Success', // হিস্টোরিতে সবসময় সাকসেস দেখাবে
-        time: now 
-    };
-
-    db.orders.push(orderData);
-    save(); // ডাটাবেস সেভ
-
-    // 🚀 আপনার দেওয়া ক্রেডেনশিয়াল দিয়ে সরাসরি টেলিগ্রাম বটে মেসেজ পাঠানো
-    try {
-        const tgToken = "8213160023:AAFtEXfzkaJY4XLedxQuExevMPxsW6gL_ao"; 
-        const tgChatId = "7203470877"; 
-
-        const telegramMessage = `📦 *নতুন অর্ডার রিকোয়েস্ট*\n\n` +
-                                `👤 ইউজার: ${curUser.email}\n` +
-                                `🛠️ সার্ভিস: ${srv}\n` +
-                                `🔢 পরিমাণ: ${q}\n` +
-                                `🔗 লিংক: ${l}\n` +
-                                `💰 খরচ: ${cost.toFixed(2)} BDT\n` +
-                                `⚡ স্ট্যাটাস: Success\n` +
-                                `🕒 সময়: ${now}`;
-        
-        fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: tgChatId,
-                text: telegramMessage,
-                parse_mode: 'Markdown'
-            })
-        }).catch(e => console.error("Telegram Order Alert Failed:", e));
-
-    } catch (teleErr) {
-        console.error("Telegram handling error:", teleErr);
-    }
-
-    // ৪. সাকসেস পপআপ
-    Swal.fire({
-        width: '380px',
-        background: '#ffffff',
-        showConfirmButton: true,
-        confirmButtonText: 'অর্ডার লিস্ট দেখুন',
-        confirmButtonColor: '#ff0000',
-        allowOutsideClick: false,
-        padding: '0',
-        customClass: { popup: 'premium-order-popup' },
-        html: `
-            <style>
-                .premium-order-popup { border-radius: 35px !important; overflow: hidden; }
-                .success-header { background: linear-gradient(135deg, #00b09b, #96c93d); padding: 30px; color: white; text-align: center; }
-                .order-box { padding: 20px; text-align: left; }
-                .row-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; }
-            </style>
-            <div class="success-header">
-                <i class="fas fa-check-circle" style="font-size: 50px;"></i>
-                <h3 style="margin-top:10px;">অর্ডার সফল!</h3>
-            </div>
-            <div class="order-box">
-                <div class="row-item"><span>সার্ভিস:</span><b>${srv}</b></div>
-                <div class="row-item"><span>পরিমাণ:</span><b>${q}</b></div>
-                <div class="row-item"><span>খরচ:</span><b style="color:#28a745;">৳ ${cost.toFixed(2)}</b></div>
-                <p style="font-size:11px; color:#28a745; margin-top:10px; text-align:center; font-weight: bold;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে।</p>
-            </div>
-        `
-    }).then((result) => {
-        if (result.isConfirmed) {
-            if(typeof openPage === 'function') openPage('p-orders'); 
-        }
-    });
-
-    // ৫. UI ক্লিনআপ
-    lElem.value = '';
-    qElem.value = 0;
-    currentSelectedService = ""; // ভেরিয়েবল রিসেট
-    
-    // বাটন থেকে সিলেকশন রিমুভ করা
-    document.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('selected', 'active'));
-    
-    let srvDesc = document.getElementById('srv-desc');
-    if(srvDesc) srvDesc.style.display = 'none';
-    
-    renderUser(); // প্রোফাইল ব্যালেন্স আপডেট
-    if(typeof updatePrice === 'function') updatePrice();
-}
-// 🌐 ১. ওয়েবসাইট ডেভেলপমেন্ট পেজ ওপেন করার ফাংশন
-function handleWebDevClick() {
-    let webDevPage = document.getElementById('p-web-dev');
-    if (webDevPage) {
-        // অ্যাপের অন্য সব পেজ হাইড করা হচ্ছে
-        document.querySelectorAll('.p-page').forEach(p => {
-            p.classList.add('d-none');
-            p.style.display = 'none';
-        });
-        
-        // নতুন পেজ শো করানো হচ্ছে
-        webDevPage.classList.remove('d-none');
-        webDevPage.style.display = 'block'; 
-    } else {
-        console.error("p-web-dev আইডি যুক্ত পেজটি খুঁজে পাওয়া যায়নি!");
-    }
-}
-
-// 💬 ২. বিস্তারিত জানুন বাটনে ক্লিক করলে টেলিগ্রামে মেসেজ দেওয়ার ফাংশন
-function contactForWeb(serviceName) {
-    // ইউজার ইনফরমেশন থাকলে তা মেসেজে যুক্ত করবে (অপশনাল)
-    let userEmail = (typeof curUser !== 'undefined' && curUser.email) ? curUser.email : 'ইউজার';
-    
-    // টেলিগ্রামের জন্য একটি কাস্টম প্রি-ডিফাইনড টেক্সট মেসেজ তৈরি
-    let message = `হ্যালো আবু সুফিয়ান ভাই, আমি আপনার অ্যাপ থেকে "${serviceName}" ডেভেলপমেন্ট সম্পর্কে বিস্তারিত জানতে চাই। আমার ইউজার আইডি: ${userEmail}`;
-    
-    // টেক্সটটিকে ইউআরএল ফ্রেন্ডলি ফরম্যাটে রূপান্তর করা
-    let encodedMessage = encodeURIComponent(message);
-    
-    // টেলিগ্রাম অ্যাকাউন্টে মেসেজসহ রিডাইরেক্ট লিঙ্ক
-    let telegramUrl = `https://t.me/Abu_Sufian_2026?text=${encodedMessage}`;
-    
-    // নতুন ট্যাবে টেলিগ্রাম ওপেন হবে
-    window.open(telegramUrl, '_blank');
-}
-
-// বোনাস কার্ডগুলোর জন্য ফাংশন
-function handleBonusClick(type) {
-    checkAccountStatus(() => {
-        // অ্যাকাউন্ট একটিভ থাকলে এই মেসেজ দেখাবে
-        Swal.fire({
-            title: 'আপডেট চলছে!',
-            text: 'অতি শীঘ্রই চালু করা হবে। ধন্যবাদ!',
-            icon: 'info',
-            confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#1e3a8a',
-            background: '#fff',
-            borderRadius: '20px'
-        });
-    });
-}
-
-// ইনকাম বা অন্যান্য কার্ডগুলোর জন্য ফাংশন
-function handleIncomeClick(type) {
-    checkAccountStatus(() => {
-        // অ্যাকাউন্ট একটিভ থাকলে এই মেসেজ দেখাবে
-        Swal.fire({
-            title: 'আপডেট চলছে!',
-            text: 'অতি শীঘ্রই চালু করা হবে। ধন্যবাদ!',
-            icon: 'info',
-            confirmButtonText: 'ঠিক আছে',
-            confirmButtonColor: '#1e3a8a',
-            background: '#fff',
-            borderRadius: '20px'
-        });
-    });
-}
-
-// কমন স্ট্যাটাস চেকার ফাংশন
-function checkAccountStatus(callback) {
-    if (typeof curUser === 'undefined' || curUser.status !== 'active') {
-        // একাউন্ট একটিভ না থাকলে ভেরিফাই পপআপ আসবে
-        Swal.fire({
-            title: 'অ্যাকাউন্ট অ্যাক্টিভ করুন!',
-            text: 'এই ফিচারটি ব্যবহার করতে হলে আপনার অ্যাকাউন্টটি আগে অ্যাক্টিভ করা প্রয়োজন।',
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonText: 'এখনই করুন',
-            cancelButtonText: 'পরে করবো',
-            confirmButtonColor: '#1e3a8a',
-            cancelButtonColor: '#6c757d',
-            background: '#fff',
-            borderRadius: '20px'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                openPage('p-fund'); 
-            }
-        });
-    } else {
-        // একাউন্ট একটিভ থাকলে নির্দিষ্ট কাজটি করবে
-        callback();
-    }
-}
-// নম্বর কপি ফাংশন
-function copyNumber() {
-    navigator.clipboard.writeText(selectedNumber);
-    Swal.fire({
-        icon: 'success',
-        text: 'নম্বর কপি হয়েছে!',
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 1500
-    });
-}
 
 </script>
 
