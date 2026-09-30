@@ -805,98 +805,149 @@ main{
 
 }
 
+/* =========================
+   Popular Categories
+========================= */
 
-/* =========================================================
-   CATEGORY
-========================================================= */
-
-.categories{
-
-    display:flex;
-
-    gap:10px;
-
-    overflow-x:auto;
-
-    scrollbar-width:none;
-
+.categories {
+    display: flex;
+    gap: 18px; /* গ্যাপ বাড়ানো হয়েছে */
+    overflow-x: auto;
+    padding: 10px 4px 14px;
+    scrollbar-width: none;
 }
 
-.categories::-webkit-scrollbar{
-    display:none;
+.categories::-webkit-scrollbar {
+    display: none;
 }
 
-.category{
+.category {
+    min-width: 68px;
+    width: 68px;
+    height: 82px;
 
-    flex-shrink:0;
+    border: none;
+    border-radius: 22px;
 
-    width:94px;
+    /* গাঢ় Orange + Yellow */
+    background: linear-gradient(
+        145deg,
+        #ff8c00 0%,
+        #ff6a00 45%,
+        #ffb300 100%
+    );
 
-    padding:12px 8px;
+    color: #fff;
 
-    background:#fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    border:
-        1px solid var(--border);
+    gap: 7px;
 
-    border-radius:15px;
+    cursor: pointer;
 
-    text-align:center;
+    box-shadow:
+        0 6px 14px rgba(255, 106, 0, 0.30);
 
+    transition: all 0.25s ease;
 }
 
-.category.active{
+/* Icon Circle */
+.category-icon {
+    width: 38px;
+    height: 38px;
 
-    background:var(--gradient);
+    border-radius: 50%;
 
-    color:#fff;
+    background: #fff;
 
-    border-color:transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    color: #f26a00;
+
+    font-size: 18px;
+
+    box-shadow:
+        0 3px 9px rgba(0, 0, 0, 0.18);
+
+    transition: 0.25s ease;
 }
 
-.category-icon{
+/* Text */
+.category span {
+    font-size: 11px;
+    font-weight: 700;
 
-    width:42px;
-    height:42px;
+    white-space: nowrap;
 
-    margin:
-        0 auto 7px;
-
-    border-radius:12px;
-
-    background:#fff3e8;
-
-    color:var(--orange);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:18px;
-
+    color: #fff;
 }
 
-.category.active
-.category-icon{
+/* Active */
+.category.active {
+    background: linear-gradient(
+        145deg,
+        #ff6a00 0%,
+        #ff8c00 45%,
+        #ffc107 100%
+    );
 
-    background:
-        rgba(255,255,255,.17);
+    transform: translateY(-4px);
 
-    color:#fff;
-
+    box-shadow:
+        0 9px 20px rgba(255, 106, 0, 0.42);
 }
 
-.category span{
+.category.active .category-icon {
+    color: #ff6a00;
+}
 
-    font-size:12px;
+/* Hover */
+.category:hover {
+    transform: translateY(-5px) scale(1.04);
 
-    font-weight:700;
+    box-shadow:
+        0 10px 22px rgba(255, 106, 0, 0.40);
+}
 
+.category:hover .category-icon {
+    transform: scale(1.08);
 }
 
 
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 480px) {
+
+    .categories {
+        gap: 14px;
+    }
+
+    .category {
+        min-width: 62px;
+        width: 62px;
+        height: 76px;
+
+        border-radius: 20px;
+    }
+
+    .category-icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 16px;
+    }
+
+    .category span {
+        font-size: 10px;
+    }
+}
 /* =========================================================
    PRODUCT GRID
 ========================================================= */
@@ -2908,60 +2959,26 @@ body{
     id="page-home">
 
 <div class="container">
+<style>
+.hero-cover-wrapper{
+  width: 100%;
+  padding: 0 2px;
+  margin: 6px auto 6px auto;
+  box-sizing: border-box;
+}
+.hero-cover-img{
+  width: 100%;
+  aspect-ratio: 1536 / 650;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.12);
+}
+</style>
 
-
-    <div class="hero">
-
-        <div class="hero-content">
-
-            <div class="hero-label">
-
-                <i class="fa-solid fa-shield-halved"></i>
-
-                Trusted Online Shopping
-
-            </div>
-
-
-            <h1>
-                আপনার পছন্দ,<br>
-                আমাদের দায়িত্ব।
-            </h1>
-
-
-            <p>
-                Mart-Lp থেকে বেছে নিন আপনার প্রয়োজনীয়
-                পণ্য। সহজ অর্ডার, নিরাপদ পেমেন্ট এবং
-                নির্ভরযোগ্য ডেলিভারি সাপোর্ট।
-            </p>
-
-
-            <div class="hero-actions">
-
-                <button
-                    class="hero-primary"
-                    onclick="navigate('products')">
-
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    Shop Now
-
-                </button>
-
-
-                <button
-                    class="hero-secondary"
-                    onclick="navigate('about')">
-
-                    <i class="fa-solid fa-circle-info"></i>
-                    আমাদের সম্পর্কে
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+<div class="hero-cover-wrapper">
+  <img class="hero-cover-img" src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/63e53dce-a2c2-4919-bdcc-15ee33a88ea2.png" alt="Mart-Lp Cover">
+</div>
 
 
     <div class="search-box">
@@ -2984,100 +3001,68 @@ body{
     </div>
 
 
-    <div class="section-head">
+<div class="categories">
 
-        <h2>
-            জনপ্রিয় ক্যাটাগরি
-        </h2>
+    <button
+        class="category active"
+        onclick="filterCategory('all')">
 
-        <button
-            onclick="navigate('products')">
+        <div class="category-icon">
+            <i class="fa-solid fa-border-all"></i>
+        </div>
 
-            সব দেখুন
-
-        </button>
-
-    </div>
+        <span>সব</span>
+    </button>
 
 
-    <div class="categories">
+    <button
+        class="category"
+        onclick="filterCategory('fashion')">
 
-        <button
-            class="category active"
-            onclick="filterCategory('all')">
+        <div class="category-icon">
+            <i class="fa-solid fa-shirt"></i>
+        </div>
 
-            <div class="category-icon">
-
-                <i class="fa-solid fa-border-all"></i>
-
-            </div>
-
-            <span>সব</span>
-
-        </button>
+        <span>ফ্যাশন</span>
+    </button>
 
 
-        <button
-            class="category"
-            onclick="filterCategory('fashion')">
+    <button
+        class="category"
+        onclick="filterCategory('electronics')">
 
-            <div class="category-icon">
+        <div class="category-icon">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
 
-                <i class="fa-solid fa-shirt"></i>
-
-            </div>
-
-            <span>ফ্যাশন</span>
-
-        </button>
+        <span>ইলেকট্রনিক্স</span>
+    </button>
 
 
-        <button
-            class="category"
-            onclick="filterCategory('electronics')">
+    <button
+        class="category"
+        onclick="filterCategory('beauty')">
 
-            <div class="category-icon">
+        <div class="category-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
 
-                <i class="fa-solid fa-mobile-screen"></i>
-
-            </div>
-
-            <span>ইলেকট্রনিক্স</span>
-
-        </button>
+        <span>বিউটি</span>
+    </button>
 
 
-        <button
-            class="category"
-            onclick="filterCategory('beauty')">
+    <button
+        class="category"
+        onclick="filterCategory('home')">
 
-            <div class="category-icon">
+        <div class="category-icon">
+            <i class="fa-solid fa-house"></i>
+        </div>
 
-                <i class="fa-solid fa-sparkles"></i>
+        <span>হোম</span>
+    </button>
 
-            </div>
-
-            <span>বিউটি</span>
-
-        </button>
-
-
-        <button
-            class="category"
-            onclick="filterCategory('home')">
-
-            <div class="category-icon">
-
-                <i class="fa-solid fa-house"></i>
-
-            </div>
-
-            <span>হোম</span>
-
-        </button>
-
-    </div>
-
+</div>
 
     <div class="section-head">
 
