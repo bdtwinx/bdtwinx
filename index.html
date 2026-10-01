@@ -2713,6 +2713,18 @@ body{
 .support-actions{display:grid;gap:11px;margin-top:14px}.support-action{width:100%;border:0;background:#fff;border-radius:17px;padding:14px;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 8px 25px rgba(0,0,0,.06);border:1px solid #eee}.support-action:active{transform:scale(.985)}.support-action-icon{width:45px;height:45px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;background:linear-gradient(135deg,#ff4d00,#ffc107);flex:none}.support-action.telegram .support-action-icon{background:linear-gradient(135deg,#168ddc,#36b5ff)}.support-action.whatsapp .support-action-icon{background:linear-gradient(135deg,#16a34a,#57d77b)}.support-action.phone .support-action-icon{background:linear-gradient(135deg,#7c3aed,#a78bfa)}.support-action-text{flex:1}.support-action-text strong{display:block;font-size:15px}.support-action-text small{display:block;color:#888;margin-top:2px}.support-arrow{color:#aaa}.support-note-card{display:flex;gap:10px;align-items:flex-start;margin-top:14px;background:#fff8ef;border-color:#ffd9ad}.support-note-card>i{color:var(--orange);margin-top:4px}.support-note-card p{color:#777;font-size:13px;margin-top:4px;line-height:1.6}
 .detail-photo-wrap{position:relative}.detail-photo{position:relative}.detail-fav{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:50%;background:#fff;color:#777;box-shadow:0 8px 25px rgba(0,0,0,.15);font-size:19px}.detail-fav.active{color:#ef4444}.download-photo-btn{width:100%;margin-top:9px;padding:12px;border-radius:12px;background:#fff1e5;color:var(--orange);font-weight:800;border:1px solid #ffd7b2}.detail-saving{display:inline-flex;align-items:center;gap:6px;background:#fff3e8;color:var(--orange);padding:6px 9px;border-radius:8px;font-size:12px;font-weight:700;margin:8px 0}.status{font-weight:800}.status.status-approved{background:#dcfce7;color:#15803d}.status.status-processing{background:#dbeafe;color:#1d4ed8}.status.status-rejected{background:#fee2e2;color:#b91c1c}.status.status-pending{background:#fff7ed;color:#c2410c}.status.status-shipped{background:#ede9fe;color:#6d28d9}.status.status-delivered{background:#dcfce7;color:#166534}
 
+
+/* =========================================================
+   PAYMENT BRAND + PHOTO ACTIONS
+========================================================= */
+.payment-brand-card{min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#fff}
+.payment-brand-card .payment-logo{width:92px;height:44px;object-fit:contain;border-radius:8px;background:#fff}
+.payment-brand-card strong{font-size:14px}.payment-brand-card small{font-size:10px}
+.photo-action-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}
+.photo-action-row .download-photo-btn,.photo-action-row .share-photo-btn{margin-top:0!important}
+.share-photo-btn{width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#38bdf8);color:#fff;font-weight:800;border:1px solid rgba(37,99,235,.15)}
+.transaction-help{display:block;color:#888;font-size:11px;line-height:1.5;margin-top:5px}
+
 </style>
 </head>
 
@@ -3501,11 +3513,13 @@ body{
         <h3><i class="fa-solid fa-wallet" style="color:var(--orange)"></i> পেমেন্ট পদ্ধতি</h3>
 
         <div class="payment-grid">
-            <button class="payment-card" type="button" onclick="selectPayment('bKash',this)">
-                <i class="fa-solid fa-mobile-screen-button"></i><strong>bKash</strong><small>অগ্রিম ডেলিভারি চার্জ</small>
+            <button class="payment-card payment-brand-card" type="button" onclick="selectPayment('bKash',this)">
+                <img class="payment-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/BKash-Bangla-Logo-01.png" alt="bKash">
+                <strong>bKash</strong><small>শুধু ডেলিভারি চার্জ অগ্রিম</small>
             </button>
-            <button class="payment-card" type="button" onclick="selectPayment('Nagad',this)">
-                <i class="fa-solid fa-wallet"></i><strong>Nagad</strong><small>অগ্রিম ডেলিভারি চার্জ</small>
+            <button class="payment-card payment-brand-card" type="button" onclick="selectPayment('Nagad',this)">
+                <img class="payment-logo" src="https://mma.prnewswire.com/media/1918049/4617364/Nagad_Logo.jpg" alt="Nagad">
+                <strong>Nagad</strong><small>শুধু ডেলিভারি চার্জ অগ্রিম</small>
             </button>
             <button class="payment-card cod-active" type="button" onclick="selectPayment('Cash on Delivery',this)">
                 <i class="fa-solid fa-hand-holding-dollar"></i><strong>Cash on Delivery</strong><small>হাতে পেয়ে সম্পূর্ণ পেমেন্ট</small>
@@ -3515,8 +3529,9 @@ body{
         <div class="pay-number" id="payNumber"></div>
 
         <div class="field" id="transactionField" style="margin-top:14px;display:none">
-            <label>Transaction ID</label>
-            <input id="transactionId" placeholder="ডেলিভারি চার্জ পাঠানোর Transaction ID দিন">
+            <label><i class="fa-solid fa-receipt" style="color:var(--orange)"></i> Transaction ID <span style="color:#ef4444">*</span></label>
+            <input id="transactionId" inputmode="text" autocomplete="off" maxlength="80" placeholder="যেমন: 8A7B6C5D4E — পেমেন্টের Transaction ID দিন">
+            <small class="transaction-help">পেমেন্ট সফল হওয়ার পর পাওয়া Transaction ID হুবহু লিখুন।</small>
         </div>
     </div>
 
@@ -3974,29 +3989,88 @@ body{
             অর্ডার, পেমেন্ট, ডেলিভারি বা যেকোনো সমস্যায় আমাদের সাথে যোগাযোগ করুন।
         </p>
     </div>
+<!-- সাপোর্ট সেকশন মেইন কন্টেইনার -->
+<div class="support-actions">
 
-    <div class="support-actions">
-        <a class="support-action telegram" href="#" onclick="openTelegramSupport();return false">
-            <span class="support-action-icon"><i class="fa-brands fa-telegram"></i></span>
-            <span class="support-action-text"><strong>Telegram Support</strong><small>Telegram-এ সরাসরি যোগাযোগ করুন</small></span>
-            <i class="fa-solid fa-chevron-right support-arrow"></i>
-        </a>
-        <button class="support-action live" onclick="toggleChat();">
-            <span class="support-action-icon"><i class="fa-solid fa-comments"></i></span>
-            <span class="support-action-text"><strong>Live Support</strong><small>সরাসরি Live Chat খুলুন</small></span>
-            <i class="fa-solid fa-chevron-right support-arrow"></i>
-        </button>
-        <a class="support-action whatsapp" href="#" onclick="openWhatsAppSupport();return false">
-            <span class="support-action-icon"><i class="fa-brands fa-whatsapp"></i></span>
-            <span class="support-action-text"><strong>WhatsApp Support</strong><small>WhatsApp-এ মেসেজ করুন</small></span>
-            <i class="fa-solid fa-chevron-right support-arrow"></i>
-        </a>
-        <a class="support-action phone" href="#" onclick="openPhoneSupport();return false">
-            <span class="support-action-icon"><i class="fa-solid fa-phone"></i></span>
-            <span class="support-action-text"><strong>Phone Support</strong><small>প্রয়োজনে ফোনে যোগাযোগ করুন</small></span>
-            <i class="fa-solid fa-chevron-right support-arrow"></i>
-        </a>
-    </div>
+
+    <!-- Live Support (Tawk.to Trigger Button) -->
+    <button class="support-action live" id="jivo-trigger-btn" onclick="openDirectSupport();">
+        <span class="support-action-icon"><i id="btn-chat-icon" class="fa-solid fa-comments"></i></span>
+        <span class="support-action-text">
+            <strong id="btn-chat-text">Live Support</strong>
+            <small>সরাসরি Live Chat খুলুন</small>
+        </span>
+        <i class="fa-solid fa-chevron-right support-arrow"></i>
+    </button>
+  
+
+
+    <!-- WhatsApp Support -->
+    <a class="support-action whatsapp" href="https://wa.me/8801346199480" target="_blank" rel="noopener noreferrer">
+        <span class="support-action-icon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="support-action-text"><strong>WhatsApp Support</strong><small>WhatsApp-এ মেসেজ করুন</small></span>
+        <i class="fa-solid fa-chevron-right support-arrow"></i>
+    </a>
+
+    <!-- Phone Support -->
+    <a class="support-action phone" href="tel:+8809658604080">
+        <span class="support-action-icon"><i class="fa-solid fa-phone"></i></span>
+        <span class="support-action-text"><strong>Phone Support</strong><small>প্রয়োজনে ফোনে যোগাযোগ করুন</small></span>
+        <i class="fa-solid fa-chevron-right support-arrow"></i>
+    </a>
+</div>
+
+<!-- Tawk.to স্ক্রিপ্ট এবং হ্যান্ডলার -->
+<script type="text/javascript">
+var Tawk_API = Tawk_API || {};
+var Tawk_LoadStart = new Date();
+
+// ডিফল্ট গোলাকার বাটন হাইড রাখবে
+Tawk_API.onLoad = function(){
+    Tawk_API.hideWidget();
+};
+
+Tawk_API.onChatMinimized = function(){
+    Tawk_API.hideWidget();
+};
+
+(function(){
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/6aae34cc0b6d8e343d257c18/default';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+})();
+
+function openDirectSupport() {
+    const btn = document.getElementById('jivo-trigger-btn');
+    const icon = document.getElementById('btn-chat-icon');
+    const text = document.getElementById('btn-chat-text');
+
+    if(btn){
+        btn.disabled = true;
+        icon.className = "fa-solid fa-spinner fa-spin";
+        text.innerText = "লোডিং...";
+    }
+
+    var checkTawk = setInterval(function() {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+            clearInterval(checkTawk);
+            Tawk_API.showWidget();
+            Tawk_API.maximize();
+
+            // বাটন আগের অবস্থায় ফিরিয়ে আনা
+            if(btn){
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                icon.className = "fa-solid fa-comments";
+                text.innerText = "Live Support";
+            }
+        }
+    }, 200);
+}
+</script>
 
     <div class="form-card support-note-card">
         <i class="fa-solid fa-circle-info"></i>
@@ -4115,81 +4189,11 @@ body{
 ========================================================= */
 
 let products = [
-
-{
-    id:1,
-    name:"Premium Casual T-Shirt",
-    category:"fashion",
-    price:599,
-    oldPrice:799,
-    discount:"25%",
-    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900",
-    description:
-        "Premium quality comfortable casual T-Shirt."
-},
-
-{
-    id:2,
-    name:"Wireless Bluetooth Headphone",
-    category:"electronics",
-    price:1290,
-    oldPrice:1590,
-    discount:"19%",
-    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900",
-    description:
-        "Modern wireless headphone with premium sound."
-},
-
-{
-    id:3,
-    name:"Smart Watch",
-    category:"electronics",
-    price:1499,
-    oldPrice:1899,
-    discount:"21%",
-    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900",
-    description:
-        "Modern smart watch with stylish premium design."
-},
-
-{
-    id:4,
-    name:"Premium Beauty Set",
-    category:"beauty",
-    price:890,
-    oldPrice:1100,
-    discount:"19%",
-    image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900",
-    description:
-        "Premium beauty care product set."
-},
-
-{
-    id:5,
-    name:"Modern Home Lamp",
-    category:"home",
-    price:750,
-    oldPrice:950,
-    discount:"21%",
-    image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=900",
-    description:
-        "Beautiful modern lamp for home decoration."
-},
-
-{
-    id:6,
-    name:"Premium Sunglasses",
-    category:"fashion",
-    price:699,
-    oldPrice:899,
-    discount:"22%",
-    image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=900",
-    description:
-        "Stylish premium sunglasses."
-}
-
+    /* আপনার নিজের product object এখানে যোগ করুন।
+       উদাহরণ:
+       { id:1, name:"...", category:"...", price:0, oldPrice:0, discount:"", image:"https://...", description:"..." }
+    */
 ];
-
 
 /* =========================================================
    PAYMENT NUMBERS
@@ -4211,6 +4215,8 @@ const SHEETDB_API_ENDPOINT = "https://sheetdb.io/api/v1/oonj9k6j8tkhr";
    Sheet columns: type, id, name, category, price, old_price, discount, image, description
    Set type=product. Leave empty to use the products built into this file. */
 const PRODUCT_SHEETDB_API_ENDPOINT = "https://sheetdb.io/api/v1/hpui9cej20mhl";
+// Hard-coded demo products removed. আপনার product object products=[]-এর মধ্যে যোগ করুন।
+
 
 /* Support links */
 const TELEGRAM_SUPPORT_URL = "https://t.me/Dev_Sufian";
@@ -4638,11 +4644,9 @@ function productCard(p){
 function renderHome(){
 
     document.getElementById("homeProducts")
-        .innerHTML =
-        products
-            .slice(0,6)
-            .map(productCard)
-            .join("");
+        .innerHTML = products.length
+            ? products.slice(0,6).map(productCard).join("")
+            : empty("fa-solid fa-box-open","এখনও কোনো প্রোডাক্ট যোগ করা হয়নি");
 
 }
 
@@ -4790,9 +4794,14 @@ function showProductDetail(id){
                     <i class="${wished?'fa-solid':'fa-regular'} fa-heart"></i>
                 </button>
             </div>
-            <button class="download-photo-btn" onclick="downloadProductPhoto()">
-                <i class="fa-solid fa-download"></i> ফটো ডাউনলোড করুন
-            </button>
+            <div class="photo-action-row">
+                <button class="download-photo-btn" onclick="downloadProductPhoto()">
+                    <i class="fa-solid fa-download"></i> ফটো ডাউনলোড
+                </button>
+                <button class="share-photo-btn" onclick="shareProductPhoto()">
+                    <i class="fa-solid fa-share-nodes"></i> শেয়ার করুন
+                </button>
+            </div>
         </div>
 
         <div class="detail-info">
@@ -4813,20 +4822,66 @@ function showProductDetail(id){
         </div>`;
 }
 
+async function imageToBlob(url){
+    const res=await fetch(url,{mode:"cors",cache:"no-store"});
+    if(!res.ok) throw new Error("image fetch failed");
+    return await res.blob();
+}
+
+function safeFileName(name){
+    return String(name||"product").trim().replace(/[^a-zA-Z0-9\u0980-\u09FF._-]+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"")||"product";
+}
+
 async function downloadProductPhoto(){
-    if(!selectedProduct) return showToast("প্রোডাক্ট পাওয়া যায়নি");
-    const safe=String(selectedProduct.name||'product').replace(/[^a-zA-Z0-9\u0980-\u09FF]+/g,'-');
+    if(!selectedProduct?.image) return showToast("প্রোডাক্ট ফটো পাওয়া যায়নি");
+    const filename=safeFileName(selectedProduct.name)+".jpg";
+
+    // Native Android bridge: use it when the Play Store wrapper exposes one.
     try{
-        const res=await fetch(selectedProduct.image,{mode:'cors'});
-        if(!res.ok) throw new Error('download failed');
-        const blob=await res.blob();
+        if(window.Android && typeof window.Android.downloadImage==="function"){
+            window.Android.downloadImage(String(selectedProduct.image),filename);
+            showToast("ফটো গ্যালারিতে সেভ হচ্ছে…");
+            return;
+        }
+    }catch(e){}
+
+    try{
+        const blob=await imageToBlob(selectedProduct.image);
         const url=URL.createObjectURL(blob);
-        const a=document.createElement('a'); a.href=url; a.download=safe+'.jpg';
-        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        const a=document.createElement("a");
+        a.href=url; a.download=filename; a.rel="noopener";
+        a.style.display="none"; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url),1500);
         showToast("ফটো ডাউনলোড শুরু হয়েছে");
     }catch(e){
-        window.open(selectedProduct.image,'_blank');
-        showToast("ফটো নতুন ট্যাবে খোলা হয়েছে");
+        // Some Android WebViews ignore the download attribute. Opening the original
+        // image gives the user the native image menu/Save image option.
+        try{ window.open(selectedProduct.image,"_blank","noopener"); }catch(_){}
+        showToast("অ্যাপে সরাসরি Save না হলে ফটো খুলে Save image চাপুন");
+    }
+}
+
+async function shareProductPhoto(){
+    if(!selectedProduct?.image) return showToast("প্রোডাক্ট ফটো পাওয়া যায়নি");
+    const title=selectedProduct.name||"Mart-Lp Product";
+    const shareData={title,text:title,url:String(selectedProduct.image)};
+    try{
+        if(navigator.share){
+            try{
+                const blob=await imageToBlob(selectedProduct.image);
+                const file=new File([blob],safeFileName(title)+".jpg",{type:blob.type||"image/jpeg"});
+                if(!navigator.canShare || navigator.canShare({files:[file]})){
+                    await navigator.share({title,text:title,files:[file]});
+                    return;
+                }
+            }catch(_){}
+            await navigator.share(shareData);
+            return;
+        }
+        await navigator.clipboard?.writeText(String(selectedProduct.image));
+        showToast("ফটোর লিংক কপি হয়েছে");
+    }catch(e){
+        if(e?.name!=="AbortError") showToast("শেয়ার করা যায়নি");
     }
 }
 
@@ -4856,7 +4911,15 @@ function addDetailToCart(){
 
 function buyNow(){
     if(!selectedProduct){ showToast("প্রোডাক্ট পাওয়া যায়নি"); return; }
-    addToCart(Number(selectedProduct.id),detailQty,true);
+    const numericId=Number(selectedProduct.id);
+    const qty=Math.max(1,Number(detailQty)||1);
+    const existing=cart.find(x=>Number(x.id)===numericId);
+    // Keep the user's existing cart; add/increase this product, then open checkout.
+    if(existing) existing.qty=Math.max(1,Number(existing.qty)||1)+qty;
+    else cart.push({id:numericId,qty,size:""});
+    saveCart(); updateCounts();
+    showToast("এখনই অর্ডারের Checkout খোলা হচ্ছে");
+    navigate("checkout");
 }
 
 
@@ -5288,20 +5351,25 @@ function updateCheckoutSummary(){
 function selectPayment(method,element){
     selectedPayment=method;
     document.querySelectorAll(".payment-card").forEach(x=>x.classList.remove("selected"));
-    element.classList.add("selected");
+    element?.classList.add("selected");
     const box=document.getElementById("payNumber"), tf=document.getElementById("transactionField");
     if(method==="Cash on Delivery"){
         box.classList.add("show");
         box.innerHTML=`<span>Cash on Delivery নির্বাচিত হয়েছে।</span><strong>৳${calculateTotal().toLocaleString()}</strong><small class="advance-note">পণ্য হাতে পাওয়ার সময় product + delivery charge-এর সম্পূর্ণ টাকা দিতে হবে।</small>`;
-        tf.style.display="none"; document.getElementById("transactionId").value="";
+        tf.style.display="none";
+        document.getElementById("transactionId").value="";
     }else{
         box.classList.add("show");
         const advance=calculateAdvance();
-        box.innerHTML=`<span>${method} নম্বরে শুধু delivery charge অগ্রিম ৳${advance.toLocaleString()} পাঠান।</span><strong>${paymentNumbers[method]}</strong><button type="button" class="copy-pay" onclick="copyText('${paymentNumbers[method]}')">COPY</button><small class="advance-note">Product total ৳${calculateSubtotal().toLocaleString()} — এটি পণ্য হাতে পাওয়ার সময় দিতে হবে।</small>`;
+        const logo=method==="bKash"
+          ? "https://commons.wikimedia.org/wiki/Special:Redirect/file/BKash-Bangla-Logo-01.png"
+          : "https://mma.prnewswire.com/media/1918049/4617364/Nagad_Logo.jpg";
+        box.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><img src="${logo}" alt="${method}" style="width:76px;height:34px;object-fit:contain;border-radius:7px;background:#fff"><b>${method}</b></div><span>${method} নম্বরে শুধু delivery charge অগ্রিম <b>৳${advance.toLocaleString()}</b> পাঠান।</span><strong>${paymentNumbers[method]}</strong><button type="button" class="copy-pay" onclick="copyText('${paymentNumbers[method]}')">COPY</button><small class="advance-note">Product total ৳${calculateSubtotal().toLocaleString()} — এটি পণ্য হাতে পাওয়ার সময় দিতে হবে।</small>`;
         tf.style.display="block";
     }
     updateCheckoutSummary();
 }
+
 function copyText(v){navigator.clipboard?.writeText(v).then(()=>showToast("নম্বর কপি হয়েছে")).catch(()=>showToast(v));}
 
 
@@ -5322,7 +5390,7 @@ async function submitOrder(){
     if(!division||!district||!upazila)return showToast("বিভাগ, জেলা ও থানা/উপজেলা নির্বাচন করুন");
     if(address.length<5)return showToast("সম্পূর্ণ ঠিকানা দিন");
     if(!selectedPayment)return showToast("Payment method নির্বাচন করুন");
-    if(selectedPayment!=="Cash on Delivery" && transaction.length<4)return showToast("অগ্রিম delivery charge-এর Transaction ID দিন");
+    if(selectedPayment!=="Cash on Delivery" && !/^[A-Za-z0-9_-]{4,80}$/.test(transaction))return showToast("সঠিক Transaction ID দিন");
     const missingSize=items.find(p=>!String(p.size||"").trim());
     if(missingSize){
       renderCheckoutItems();
