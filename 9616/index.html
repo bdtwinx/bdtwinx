@@ -1702,6 +1702,55 @@ tbody tr:hover{background:#fffaf5}
     box-shadow:0 0 0 4px rgba(250,204,21,.14);
 }
 
+
+.stats-vertical{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.stat-click{width:100%;text-align:left;font-family:inherit;cursor:pointer;border:1px solid #f3dfc8}
+.stat-click small{display:block;position:relative;z-index:2;color:#b45309;font-size:10px;margin-top:7px;font-weight:600}
+.stat-click:hover{border-color:#f97316;background:#fffdf8;transform:translateX(3px)}
+.balance-strip{display:flex;align-items:center;gap:12px;background:linear-gradient(110deg,#fff7ed,#fffbeb);border:1px solid #fed7aa;border-radius:15px;padding:14px 17px;margin-bottom:18px}
+.balance-strip>span{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#f97316;color:#fff;font-size:22px;font-weight:800}
+.balance-strip small{display:block;color:#9a6b42;font-size:9px;font-weight:700}.balance-strip strong{display:block;color:#c2410c;font-size:21px;margin-top:2px}
+.recent-panel{margin-bottom:18px}.recent-list{padding:4px 18px}.recent-user{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #f3eee7}.recent-user:last-child{border-bottom:0}
+.recent-avatar{width:38px;height:38px;flex:0 0 38px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#ffedd5;color:#c2410c;font-weight:800}
+.recent-meta{min-width:0;flex:1}.recent-meta strong{display:block;font-size:12px;overflow-wrap:anywhere}.recent-meta small{display:block;color:#8b8177;font-size:10px;margin-top:3px;overflow-wrap:anywhere}
+/* Four status cards use separate professional color systems */
+.stats-vertical .stat-click:nth-child(1){background:linear-gradient(120deg,#eef2ff,#ffffff 72%);border-color:#c7d2fe}
+.stats-vertical .stat-click:nth-child(1):after{background:#c7d2fe66}
+.stats-vertical .stat-click:nth-child(1) .stat-label{color:#4f46e5}
+.stats-vertical .stat-click:nth-child(1) .stat-value{color:#3730a3}
+.stats-vertical .stat-click:nth-child(1) .stat-icon{background:#e0e7ff;color:#4338ca}
+.stats-vertical .stat-click:nth-child(1) small{color:#4338ca}
+.stats-vertical .stat-click:nth-child(2){background:linear-gradient(120deg,#ecfdf5,#ffffff 72%);border-color:#a7f3d0}
+.stats-vertical .stat-click:nth-child(2):after{background:#a7f3d066}
+.stats-vertical .stat-click:nth-child(2) .stat-label{color:#059669}
+.stats-vertical .stat-click:nth-child(2) .stat-value{color:#065f46}
+.stats-vertical .stat-click:nth-child(2) .stat-icon{background:#d1fae5;color:#047857}
+.stats-vertical .stat-click:nth-child(2) small{color:#047857}
+.stats-vertical .stat-click:nth-child(3){background:linear-gradient(120deg,#fffbeb,#ffffff 72%);border-color:#fde68a}
+.stats-vertical .stat-click:nth-child(3):after{background:#fde68a66}
+.stats-vertical .stat-click:nth-child(3) .stat-label{color:#b45309}
+.stats-vertical .stat-click:nth-child(3) .stat-value{color:#92400e}
+.stats-vertical .stat-click:nth-child(3) .stat-icon{background:#fef3c7;color:#b45309}
+.stats-vertical .stat-click:nth-child(3) small{color:#92400e}
+.stats-vertical .stat-click:nth-child(4){background:linear-gradient(120deg,#fff1f2,#ffffff 72%);border-color:#fecdd3}
+.stats-vertical .stat-click:nth-child(4):after{background:#fecdd366}
+.stats-vertical .stat-click:nth-child(4) .stat-label{color:#e11d48}
+.stats-vertical .stat-click:nth-child(4) .stat-value{color:#9f1239}
+.stats-vertical .stat-click:nth-child(4) .stat-icon{background:#ffe4e6;color:#be123c}
+.stats-vertical .stat-click:nth-child(4) small{color:#be123c}
+.admin-profile{position:relative;cursor:pointer;font-family:inherit;color:inherit;appearance:none;outline:none}
+.admin-profile:hover{border-color:#fed7aa;background:#fffaf5}
+.admin-profile:focus-visible{box-shadow:0 0 0 3px #fed7aa}
+.profile-popup{display:none;position:absolute;right:24px;top:62px;width:205px;padding:7px;background:#fff;border:1px solid #f3dfc8;border-radius:14px;box-shadow:0 18px 50px #1f29371f;z-index:150}
+.profile-popup.open{display:block;animation:profilePop .16s ease-out}
+.profile-popup button{width:100%;display:flex;align-items:center;gap:10px;padding:11px 12px;border:0;border-radius:9px;background:transparent;color:#374151;font-family:inherit;font-size:12px;font-weight:600;text-align:left;cursor:pointer}
+.profile-popup button:hover{background:#fff7ed;color:#c2410c}
+.profile-popup .profile-logout{color:#dc2626}
+.profile-popup .profile-logout:hover{background:#fff1f2;color:#b91c1c}
+.profile-popup .profile-popup-divider{height:1px;background:#f1f5f9;margin:5px 4px}
+@keyframes profilePop{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:550px){.stat-click{padding:12px 13px}.stat-click .stat-value{font-size:20px}.balance-strip strong{font-size:19px}.recent-list{padding:4px 12px}.profile-popup{right:12px;top:60px}}
+
 </style>
 </head>
 
@@ -1857,7 +1906,7 @@ tbody tr:hover{background:#fffaf5}
 
         <div
             class="menu-item active"
-            onclick="setActiveMenu(this)"
+            onclick="showDashboard();setActiveMenu(this)"
         >
 
             <span class="menu-icon">
@@ -1871,7 +1920,7 @@ tbody tr:hover{background:#fffaf5}
 
         <div
             class="menu-item"
-            onclick="focusUsers();setActiveMenu(this)"
+            onclick="openUserPage('all');setActiveMenu(this)" 
         >
 
             <span class="menu-icon">
@@ -1883,52 +1932,7 @@ tbody tr:hover{background:#fffaf5}
         </div>
 
 
-        <div
-            class="menu-item"
-            onclick="loadUsers();setActiveMenu(this)"
-        >
 
-            <span class="menu-icon">
-                ↻
-            </span>
-
-            Refresh Data
-
-        </div>
-
-        <div class="menu-title">
-            System
-        </div>
-
-
-        <div
-            class="menu-item"
-            onclick="openSettings()"
-        >
-
-            <span class="menu-icon">
-                ⚙
-            </span>
-
-            Settings
-
-        </div>
-
-
-
-
-        <div
-            class="menu-item logout-menu"
-            onclick="adminLogout()"
-        >
-
-            <span class="menu-icon">
-                ⇥
-            </span>
-
-            Logout
-
-        </div>
 
     </aside>
 
@@ -1968,23 +1972,19 @@ tbody tr:hover{background:#fffaf5}
             </div>
 
 
-            <div class="admin-profile">
-
+            <button type="button" class="admin-profile" id="adminProfileButton" onclick="toggleAdminMenu(event)" aria-haspopup="true" aria-expanded="false">
                 <div>
-
-                    <strong>
-                        Administrator
-                    </strong>
-
-                    <small>
-                        ● Online
-                    </small>
-
+                    <strong>Administrator</strong>
+                    <small>● Online　⌄</small>
                 </div>
-<div class="admin-avatar">
-    <img src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/IMG_20260930_104933_247.jpg" data-site-logo="true" alt="Admin Avatar">
-</div>
-
+                <div class="admin-avatar">
+                    <img src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/IMG_20260930_104933_247.jpg" data-site-logo="true" alt="Admin Avatar">
+                </div>
+            </button>
+            <div class="profile-popup" id="adminProfilePopup" role="menu" aria-label="Administrator menu">
+                <button type="button" role="menuitem" onclick="openSettingsFromProfile()"><span>⚙️</span> Settings</button>
+                <div class="profile-popup-divider"></div>
+                <button type="button" role="menuitem" class="profile-logout" onclick="logoutFromProfile()"><span>⇥</span> Log out</button>
             </div>
 
         </header>
@@ -1996,135 +1996,80 @@ tbody tr:hover{background:#fffaf5}
         <section class="content">
 
 
-            <!-- STATS -->
+            <div id="dashboardView">
+  <!-- Stats Cards -->
+  <div class="stats stats-vertical">
+    <button class="stat-card stat-click" onclick="openUserPage('all')">
+      <div class="stat-top">
+        <div>
+          <div class="stat-label">TOTAL USERS</div>
+          <div class="stat-value" id="totalUsers">0</div>
+        </div>
+        <div class="stat-icon">♙</div>
+      </div>
+      <small></small>
+    </button>
 
-            <div class="stats">
+    <button class="stat-card stat-click" onclick="openUserPage('active')">
+      <div class="stat-top">
+        <div>
+          <div class="stat-label">ACTIVE USERS</div>
+          <div class="stat-value" id="activeUsers">0</div>
+        </div>
+        <div class="stat-icon">✓</div>
+      </div>
+      <small></small>
+    </button>
 
+    <button class="stat-card stat-click" onclick="openUserPage('inactive')">
+      <div class="stat-top">
+        <div>
+          <div class="stat-label">INACTIVE USERS</div>
+          <div class="stat-value" id="inactiveUsers">0</div>
+        </div>
+        <div class="stat-icon">!</div>
+      </div>
+      <small></small>
+    </button>
 
-                <div class="stat-card">
+    <button class="stat-card stat-click" onclick="openUserPage('blocked')">
+      <div class="stat-top">
+        <div>
+          <div class="stat-label">BLOCKED USERS</div>
+          <div class="stat-value" id="blockedUsers">0</div>
+        </div>
+        <div class="stat-icon">⊘</div>
+      </div>
+      <small></small>
+    </button>
+  </div>
 
-                    <div class="stat-top">
+  <!-- Total Balance -->
+  <div class="balance-strip">
+    <span>৳</span>
+    <div>
+      <small>TOTAL BALANCE</small>
+      <strong id="totalBalance">৳0.00</strong>
+  </div>
+    </div>
 
-                        <div>
-
-                            <div class="stat-label">
-                                TOTAL USERS
-                            </div>
-
-                            <div
-                                class="stat-value"
-                                id="totalUsers"
-                            >
-                                0
-                            </div>
-
-                        </div>
-
-                        <div class="stat-icon">
-                            ♙
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div>
-
-                            <div class="stat-label">
-                                ACTIVE USERS
-                            </div>
-
-                            <div
-                                class="stat-value"
-                                id="activeUsers"
-                            >
-                                0
-                            </div>
-
-                        </div>
-
-                        <div class="stat-icon">
-                            ✓
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div>
-
-                            <div class="stat-label">
-                                INACTIVE USERS
-                            </div>
-
-                            <div
-                                class="stat-value"
-                                id="inactiveUsers"
-                            >
-                                0
-                            </div>
-
-                        </div>
-
-                        <div class="stat-icon">
-                            !
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-top">
-
-                        <div>
-
-                            <div class="stat-label">
-                                TOTAL BALANCE
-                            </div>
-
-                            <div
-                                class="stat-value"
-                                id="totalBalance"
-                            >
-                                ৳0
-                            </div>
-
-                        </div>
-
-                        <div class="stat-icon">
-                            ৳
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
+  <!-- Recent Users Panel -->
+  <div class="panel recent-panel">
+    <div class="panel-header">
+      <div class="panel-title">Recent Users</div>
+      <button class="btn btn-light btn-sm" onclick="openUserPage('all')">All Users</button>
+    </div>
+    <div class="recent-list" id="recentUsers">
+      <div class="loading">Loading..</div>
+    </div>
+  </div>
+</div>
 
             <!-- USER PANEL -->
 
             <div
                 class="panel"
-                id="usersPanel"
+                id="usersPanel" style="display:none;"
             >
 
 
@@ -2132,9 +2077,7 @@ tbody tr:hover{background:#fffaf5}
 
                     <div>
 
-                        <div class="panel-title">
-                            All Users
-                        </div>
+                        <div class="panel-title" id="usersPageTitle">All Users</div>
 
                         <small class="panel-title">
                             
@@ -2142,31 +2085,15 @@ tbody tr:hover{background:#fffaf5}
 
                     </div>
 
+<div class="actions d-flex align-items-center gap-2">
+  <button class="btn btn-light shadow-sm px-3" onclick="showDashboard()" style="border-radius: 10px; font-weight: 600;">
+    Back
+  </button>
+  
+  <input class="search form-control" id="searchInput" type="text" placeholder="ID / Email / Ref Code দিয়ে খুঁজুন..." oninput="searchUsers()">
+</div>
 
-                    <div class="actions">
-
-                        <input
-                            class="search"
-                            id="searchInput"
-                            type="text"
-                            placeholder="ID / Email / Ref Code দিয়ে খুঁজুন..."
-                            oninput="searchUsers()"
-                        >
-
-
-                        <button
-                            class="btn btn-green"
-                            onclick="loadUsers()"
-                        >
-                            ↻ Refresh
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
+                  
                 <div class="table-wrap">
 
                     <table>
@@ -2218,7 +2145,7 @@ tbody tr:hover{background:#fffaf5}
 
                                         <div class="spinner"></div>
 
-                                        Google Sheet থেকে Data Load হচ্ছে...
+                                       Loading...
 
                                     </div>
 
@@ -2453,12 +2380,12 @@ tbody tr:hover{background:#fffaf5}
                     <input type="file" id="settingLogoFile" accept="image/*" onchange="previewSelectedLogo(event)">
                     <small class="settings-help">Choose File চাপ দিয়ে ফোন/কম্পিউটার থেকে Logo নির্বাচন করুন। Logo এই browser-এর localStorage-এ সংরক্ষণ হবে।</small>
                 </div>
-
-                <div class="form-group full">
+ <div class="form-group full">
                     <label>Telegram Bot URL</label>
                     <input type="url" id="settingTelegramBot" placeholder="https://t.me/YourBotUsername">
                     <small class="settings-help">Deposit / Withdraw / Sell Request বাটনে চাপ দিলে এই Telegram Bot খুলবে।</small>
                 </div>
+               
             </div>
         </div>
 
@@ -2553,6 +2480,7 @@ let currentPage = 1;
 const usersPerPage = 10;
 
 let editingUser = null;
+let currentUserFilter = "all";
 
 let toastTimer;
 
@@ -2871,12 +2799,32 @@ function showAdmin(){
 }
 
 
+
+function toggleAdminMenu(event){
+ if(event) event.stopPropagation();
+ const popup=document.getElementById("adminProfilePopup");
+ const button=document.getElementById("adminProfileButton");
+ if(!popup||!button)return;
+ const willOpen=!popup.classList.contains("open");
+ popup.classList.toggle("open",willOpen);
+ button.setAttribute("aria-expanded",willOpen?"true":"false");
+}
+function closeAdminMenu(){
+ const popup=document.getElementById("adminProfilePopup");
+ const button=document.getElementById("adminProfileButton");
+ if(popup)popup.classList.remove("open");
+ if(button)button.setAttribute("aria-expanded","false");
+}
+function openSettingsFromProfile(){closeAdminMenu();openSettings();}
+function logoutFromProfile(){closeAdminMenu();adminLogout();}
+
 /* =========================================================
    LOGOUT
 ========================================================= */
 
 function adminLogout(){
 
+    closeAdminMenu();
     localStorage.removeItem(
         "martlp_admin_logged"
     );
@@ -2999,7 +2947,10 @@ async function loadUsers(){
 
                         status:
                             user.status ??
-                            "active"
+                            "active",
+
+                        created_at:
+                            user.created_at ?? user.createdAt ?? user.registration_date ?? user.registered_at ?? user.registeredAt ?? user.created_on ?? user.timestamp ?? user.date ?? user.registrationDate ?? ""
 
                     };
 
@@ -3007,16 +2958,11 @@ async function loadUsers(){
             );
 
 
-        filteredUsers =
-            [...allUsers];
-
-
+        filteredUsers = [...allUsers];
         currentPage = 1;
-
-
         updateStats();
-
-        renderUsers();
+        renderRecentUsers();
+        applyUserFilter();
 
 
         showToast(
@@ -3098,6 +3044,8 @@ function updateStats(){
         ).length;
 
 
+    const blocked = allUsers.filter(user => String(user.status).toLowerCase() === "blocked").length;
+
     const totalBalance =
         allUsers.reduce(
             function(sum,user){
@@ -3133,6 +3081,8 @@ function updateStats(){
     ).textContent =
         inactive;
 
+
+    document.getElementById("blockedUsers").textContent = blocked;
 
     document.getElementById(
         "totalBalance"
@@ -3433,66 +3383,52 @@ function renderPagination(
    SEARCH
 ========================================================= */
 
-function searchUsers(){
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        )
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    if(!search){
-
-        filteredUsers =
-            [...allUsers];
-
-    }else{
-
-        filteredUsers =
-            allUsers.filter(
-                function(user){
-
-                    return (
-
-                        String(user.id)
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        String(user.email)
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        String(user.ref_code)
-                            .toLowerCase()
-                            .includes(search)
-
-                        ||
-
-                        String(user.status)
-                            .toLowerCase()
-                            .includes(search)
-
-                    );
-
-                }
-            );
-
-    }
-
-
-    currentPage = 1;
-
-    renderUsers();
-
+function searchUsers(){ applyUserFilter(); }
+function applyUserFilter(){
+ const input=document.getElementById("searchInput"), q=input?input.value.trim().toLowerCase():"";
+ filteredUsers=allUsers.filter(user=>{
+  const status=String(user.status||"active").toLowerCase();
+  return (currentUserFilter==="all"||status===currentUserFilter)&&(!q||[user.id,user.email,user.ref_code,status].some(v=>String(v||"").toLowerCase().includes(q)));
+ });
+ currentPage=1; renderUsers();
 }
-
+function openUserPage(filter){
+ currentUserFilter=filter||"all";
+ document.getElementById("dashboardView").style.display="none";
+ document.getElementById("usersPanel").style.display="block";
+ const titles={all:"All Users",active:"Active Users",inactive:"Inactive Users",blocked:"Blocked Users"};
+ document.getElementById("usersPageTitle").textContent=titles[currentUserFilter]||"All Users";
+ document.getElementById("searchInput").value="";
+ applyUserFilter(); document.getElementById("sidebar").classList.remove("open"); window.scrollTo({top:0,behavior:"smooth"});
+}
+function showDashboard(){
+ document.getElementById("dashboardView").style.display="block";
+ document.getElementById("usersPanel").style.display="none";
+ currentUserFilter="all"; document.getElementById("sidebar").classList.remove("open"); window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderRecentUsers(){
+ const box=document.getElementById("recentUsers"); if(!box)return;
+ const dateValue=u=>u.created_at||u.createdAt||u.registration_date||u.registered_at||u.registeredAt||u.created_on||u.timestamp||u.date||u.registrationDate||"";
+ const parsedDate=u=>{const raw=dateValue(u);if(!raw)return NaN;if(typeof raw==="number")return raw<100000000000?raw*1000:raw;const parsed=Date.parse(raw);return Number.isFinite(parsed)?parsed:NaN;};
+ const hasDates=allUsers.some(u=>Number.isFinite(parsedDate(u)));
+ let sorted;
+ if(hasDates){
+  sorted=allUsers.map((user,index)=>({user,index,date:parsedDate(user)})).sort((a,b)=>{
+   const av=Number.isFinite(a.date),bv=Number.isFinite(b.date);
+   if(av&&bv)return b.date-a.date;
+   if(av!==bv)return av?-1:1;
+   return b.index-a.index;
+  }).slice(0,5).map(item=>item.user);
+ }else{
+  // Google Sheets API usually returns rows in sheet order (oldest first), so use the last five appended registrations.
+  sorted=allUsers.slice(-5).reverse();
+ }
+ if(!sorted.length){box.innerHTML='<div class="loading">এখনও কোনো ইউজার পাওয়া যায়নি।</div>';return;}
+ box.innerHTML=sorted.map(user=>{
+  const status=String(user.status||"active").toLowerCase(), cls=status==="blocked"?"badge-blocked":status==="inactive"?"badge-inactive":"badge-active";
+  return `<div class="recent-user"><div class="recent-avatar">${escapeHTML(String(user.email||user.id||"U").charAt(0).toUpperCase())}</div><div class="recent-meta"><strong>${escapeHTML(user.email||"No email")}</strong><small>ID: ${escapeHTML(user.id)} · Ref: ${escapeHTML(user.ref_code||"—")}</small></div><span class="badge ${cls}">${escapeHTML(status)}</span></div>`;
+ }).join("");
+}
 
 /* =========================================================
    OPEN EDIT
@@ -3957,27 +3893,7 @@ function toggleSidebar(){
    FOCUS USERS
 ========================================================= */
 
-function focusUsers(){
-
-    document.getElementById(
-        "usersPanel"
-    )
-    .scrollIntoView({
-
-        behavior:"smooth"
-
-    });
-
-
-    document.getElementById(
-        "sidebar"
-    )
-    .classList.remove(
-        "open"
-    );
-
-}
-
+function focusUsers(){ openUserPage("all"); }
 
 /* =========================================================
    ACTIVE MENU
@@ -4050,6 +3966,12 @@ document.getElementById(
     }
 );
 
+
+document.addEventListener("click", function(event){
+    const popup=document.getElementById("adminProfilePopup");
+    const button=document.getElementById("adminProfileButton");
+    if(popup && !popup.contains(event.target) && button && !button.contains(event.target)) closeAdminMenu();
+});
 
 document.getElementById("settingsModal").addEventListener("click", function(event){
     if(event.target === this){
