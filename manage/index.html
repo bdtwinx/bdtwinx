@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রোফাইল আপগ্রেড - Mart-Lp</title>
+    <!-- FontAwesome ও Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #fdfbf7;
+            color: #333;
+            animation: fadeInBody 0.4s ease-in-out;
+        }
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* প্রফেশনাল কমলা-হলুদ গ্রেডিয়েন্ট হেডার */
+        .sub-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.25);
+            z-index: 1000;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-btn {
+            font-size: 15px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+        }
+        /* বাম পাশে কার্ড নাম স্টাইল */
+        .brand-name {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .sub-header h1 {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* ট্যাব বার */
+        .tab-bar {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #64748b;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            color: #ea580c;
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* কন্টেইনার */
+        .sub-container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* টপ নোটিশ কার্ড */
+        .notice-card {
+            background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
+            border: 1px solid #fed7aa;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #1e293b;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(255, 126, 95, 0.05);
+        }
+        .notice-card span {
+            color: #ea580c;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* মূল সাবস্ক্রিপশন কার্ড */
+        .premium-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 126, 95, 0.3);
+        }
+        .crown-badge-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .crown-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .crown-price-tag {
+            position: absolute;
+            bottom: -4px;
+            background: #10b981;
+            color: white;
+            font-size: 9.5px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        .badge-tags {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .badge-tags span {
+            font-size: 10.5px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .bg-gold { background: #fef3c7; color: #b45309; }
+        .bg-rec { background: #e0e7ff; color: #3730a3; }
+
+        .premium-card h2 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .premium-card > p {
+            font-size: 11.5px;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+        }
+
+        /* ফিচার লিস্ট */
+        .feature-check-list {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .feature-check-list li {
+            font-size: 12px;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-check-list li i {
+            color: #fbbf24;
+            font-size: 13px;
+        }
+
+        /* আনলক করুন বাটন */
+        .subscription-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13.5px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+            transition: transform 0.2s;
+        }
+        .subscription-btn:active { transform: scale(0.98); }
+
+        /* কমিশন ব্রেকডাউন সেকশন */
+        .commission-section {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .commission-section h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 14px;
+        }
+        .comm-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .comm-box {
+            background: #1e1b4b;
+            color: white;
+            padding: 10px 6px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 126, 95, 0.3);
+        }
+        .comm-box small {
+            font-size: 10px;
+            color: #94a3b8;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .comm-box b {
+            font-size: 13.5px;
+            color: #fbbf24;
+        }
+
+        /* কেন সাবস্ক্রাইব করবেন ট্যাব ডিজাইন */
+        .why-card {
+            background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
+            border: 1px solid #fed7aa;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .why-card h4 {
+            font-size: 13px;
+            color: #ea580c;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .why-card p {
+            font-size: 12px;
+            color: #475569;
+            line-height: 1.4;
+            text-align: right;
+        }
+
+        /* প্রজেক্ট বা ফিচার আইটেম কার্ডসমূহ (২০টি) */
+        .feature-item-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #1e293b;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* কাস্টম পপআপ স্টাইল */
+        .custom-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .custom-popup-box {
+            background: white;
+            width: 100%;
+            max-width: 340px;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: popupScale 0.3s ease;
+        }
+        @keyframes popupScale {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .custom-popup-box h3 {
+            color: #ea580c;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .custom-popup-box p {
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .popup-close-btn {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="sub-header">
+        <div class="header-left">
+            <a href="https://martlp.com/" class="back-btn" title="Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="brand-container">
+  <span class="brand-name"></span> Manage Subscription
+</div>
+        </div>
+       
+    </header>
+
+    <!-- ট্যাব বার -->
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(event, 'process-tab')">সাবস্ক্রিপশন প্রক্রিয়া</button>
+        <button class="tab-btn" onclick="switchTab(event, 'why-tab')">কেন সাবস্ক্রাইব করবেন?</button>
+    </div>
+
+    <!-- মূল কন্টেইনার -->
+    <div class="sub-container">
+        
+        <!-- ================= tab-1: সাবস্ক্রিপশন প্রক্রিয়া ================= -->
+        <div id="process-tab" class="tab-content active">
+            
+            <!-- নোটিশ কার্ড -->
+            <div class="notice-card">
+                আমাদের অ্যাপের ৩০+ প্রিমিয়াম সার্ভিস, ভবিষ্যতের ফিচার ও এক্সক্লুসিভ অফারগুলো লাইফটাইম ব্যবহার করতে, মাত্র একবারের সাবস্ক্রিপশন ফি প্রযোজ্য (ফেরতযোগ্য নয়)।<br>
+                <span>সাবস্ক্রিপশনের সকল সুবিধা দেখতে ডানে বা বামে ক্লিক করুন →</span>
+            </div>
+
+            <!-- প্রিমিয়াম সাবস্ক্রিপশন মেইন কার্ড -->
+            <div class="premium-card">
+                <div class="crown-badge-box">
+                    <div class="crown-icon">
+                        <i class="fas fa-crown"></i>
+                        <span class="crown-price-tag">100 টাকা</span>
+                    </div>
+                    <div>
+                        <div class="badge-tags">
+                            <span class="bg-gold">Premium Member</span>
+                            <span class="bg-rec">সুপারিশকৃত</span>
+                        </div>
+                        <h2>প্রিমিয়াম সাবস্ক্রিপশন</h2>
+                    </div>
+                </div>
+                <p>সব ফিচার আনলক করুন, দ্রুত সাপোর্ট ও বোনাস সুবিধা নিন।</p>
+
+                <ul class="feature-check-list">
+                    <li><i class="fas fa-check-circle"></i> লাইট + বিজনেস সাবস্ক্রিপশন ফ্রি</li>
+                    <li><i class="fas fa-check-circle"></i> সব প্রিমিয়াম ফিচার + অ্যাক্সেস</li>
+                    <li><i class="fas fa-check-circle"></i> রেফার ইনকাম ৮০ টাকা, লিডারশিপ</li>
+                    <li><i class="fas fa-check-circle"></i> কোর্স, সেলস, ভিডিও ও অ্যাডভান্স ট্রেনিং</li>
+                    <li><i class="fas fa-check-circle"></i> সব SMM প্রজেক্ট আনলক</li>
+                    <li><i class="fas fa-check-circle"></i> সব প্রজেক্ট থেকে কমিশন</li>
+                    <li><i class="fas fa-check-circle"></i> ২৪/৭ প্রায়োরিটি সাপোর্ট</li>
+                    <li><i class="fas fa-check-circle"></i> এবং অন্যান্য এক্সক্লুসিভ অফার</li>
+                </ul>
+
+                <!-- আনলক করুন বাটন -->
+                <button class="subscription-btn" onclick="activateAccountNow()">
+                    প্রিমিয়াম আনলক করুন &nbsp;<i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+
+        </div>
+
+        <!-- ================= tab-2: কেন সাবস্ক্রাইব করবেন? ================= -->
+        <div id="why-tab" class="tab-content">
+            
+            <div class="why-card">
+                <h4>আপনার কাজের দক্ষতা নেই?</h4>
+                <p>আমরা আপনাকে শেখাবো।</p>
+            </div>
+
+            <div class="why-card">
+                <h4>আপনার কাজ করার মতো ডিভাইস নেই?</h4>
+                <p>আমরা প্রতি ২ মাস পর পর ল্যাপটপ, কম্পিউটার, মোবাইল ফোন গিভওয়ে করব।</p>
+            </div>
+
+            <div class="why-card">
+                <h4>আপনার দক্ষতা আছে, ডিভাইস আছে, কিন্তু কাজ নেই?</h4>
+                <p>আমরা আপনাকে কাজ খুঁজে দেব।</p>
+            </div>
+
+            <div class="why-card" style="background: linear-gradient(135deg, #fdf2f8 0%, #fff1f2 100%); border-color: #fbcfe8;">
+                <h4 style="color: #db2777;">মোট কথা এই যে, আপনার জীবনে আর্থিক সাফল্য আনতে এবং IT সেক্টরে দক্ষ করে তুলতে আমরা আপনাকে সর্বোচ্চ সাপোর্ট করব ইনশাআল্লাহ।</h4>
+                <p style="text-align: left; color: #1e293b; margin-top: 6px;">
+                    আর Mart-Lp এমন একটি অ্যাপ যেখানে আপনি IT সেক্টরে জিরো থেকে হিরো হতে পারবেন ✅<br>
+                    এমনকি আপনি যেকোনো সেক্টরের মানুষ হন না কেন Mart-Lp আপনার পাশে থাকে ইনশাআল্লাহ ✅
+                </p>
+            </div>
+
+            <!-- এক নজরে ২০টি প্রজেক্ট বা ফিচারসমূহ -->
+            <div class="section-title" style="font-size: 15px; font-weight: 700; color: #1e293b; margin: 20px 0 10px 4px;">
+                এক নজরে আমাদের ২০টি ফিচার ও প্রজেক্টসমূহ
+            </div>
+
+            <div class="feature-item-card">1. স্কিল ডেভেলপমেন্ট কোর্স ও অ্যাক্সেসরিজ গিভওয়ে</div>
+            <div class="feature-item-card">2. দৈনিক বোনাস এমাউন্ট</div>
+            <div class="feature-item-card">3. ডিজিটাল সার্ভিসেস</div>
+            <div class="feature-item-card">4. বাই ও সেল</div>
+            <div class="feature-item-card">5. নেটওয়ার্ক মার্কেটিং</div>
+            <div class="feature-item-card">6. অ্যাফিলিয়েট মার্কেটিং</div>
+            <div class="feature-item-card">7. টিম কমিশন</div>
+            <div class="feature-item-card">8. রেফারেল কমিশন</div>
+            <div class="feature-item-card">9. টার্গেট বোনাস</div>
+            <div class="feature-item-card">10. ব্যালেন্স ম্যানেজমেন্ট</div>
+            <div class="feature-item-card">11. মোবাইল রিচার্জ / টপ-আপ</div>
+            <div class="feature-item-card">12. মাইক্রো জব / ফ্রিল্যান্সিং</div>
+            <div class="feature-item-card">13. প্রোডাক্ট রিসেল ও ই-কমার্স</div>
+            <div class="feature-item-card">14. ড্রাইভ অফার</div>
+            <div class="feature-item-card">15. পারফরম্যান্স বোনাস</div>
+            <div class="feature-item-card">16. রক্তদান সিস্টেম</div>
+            <div class="feature-item-card">17. র‍্যাঙ্কিং সিস্টেম</div>
+            <div class="feature-item-card">18. ডোনেশন সিস্টেম</div>
+            <div class="feature-item-card">19. লাইভ সাপোর্ট ও ট্রেনিং সেশন</div>
+            <div class="feature-item-card">20. এক্সক্লুসিভ লিডারশিপ বোনাস</div>
+
+        </div>
+
+    </div>
+
+    <!-- কাস্টম পপআপ মোডাল -->
+    <div id="customAlertPopup" class="custom-popup-overlay">
+        <div class="custom-popup-box">
+            <h3><i class="fas fa-info-circle"></i> নোটিশ</h3>
+            <p>একাউন্ট একটিভ করা না থাকলে হোমপেজে Premium Access কার্ড আছে সেখানে <b>View</b> বাটনে চাপ দিয়ে একাউন্ট একটিভ করে নিন। এর জন্য একাউন্ট বেলেন্স ১০০ টাকা থাকা প্রয়োজন।</p>
+            <button class="popup-close-btn" onclick="closeAlertPopup()">ঠিক আছে</button>
+        </div>
+    </div>
+
+    <!-- জাভাস্ক্রিপ্ট লজিক -->
+    <script>
+        function switchTab(evt, tabName) {
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            let tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // View / Activate Button Function (Popup Open)
+        function activateAccountNow() {
+            document.getElementById('customAlertPopup').style.display = 'flex';
+        }
+
+        // Close Popup Function
+        function closeAlertPopup() {
+            document.getElementById('customAlertPopup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
