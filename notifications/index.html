@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Mart-Lp</title>
+    <!-- FontAwesome ও Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #fdfbf7;
+            color: #333;
+        }
+        
+        /* প্রফেশনাল কমলা-হলুদ গ্রেডিয়েন্ট হেডার */
+        .noti-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.25);
+            z-index: 1000;
+        }
+        .back-btn {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+        }
+        .back-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0.95);
+        }
+        .noti-header h1 {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* নোটিফিকেশন লিস্ট কন্টেইনার */
+        .noti-container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* প্রফেশনাল নোটিফিকেশন কার্ড */
+        .noti-card {
+            background: #ffffff;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 126, 95, 0.15);
+            border-left: 4px solid #ff7e5f;
+            position: relative;
+            overflow: hidden;
+        }
+        .noti-card:hover {
+            box-shadow: 0 6px 18px rgba(255, 126, 95, 0.12);
+            transform: translateY(-1px);
+        }
+        .noti-card:active {
+            transform: scale(0.98);
+        }
+        
+        /* কমলা-হলুদ মিক্সড আইকন বক্স */
+        .noti-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fff3ec 0%, #fff9e6 100%);
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.6);
+        }
+        .noti-content h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        .noti-content p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .noti-time {
+            font-size: 10.5px;
+            color: #f97316;
+            margin-top: 6px;
+            display: inline-block;
+            font-weight: 500;
+            background: #fff7ed;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* পপআপ অ্যানিমেশন */
+        @keyframes popupScale {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="noti-header">
+        <a href="https://martlp.com/" class="back-btn" title="Back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>নোটিফিকেশন</h1>
+    </header>
+
+    <!-- নোটিফিকেশন লিস্ট -->
+    <div class="noti-container">
+        
+        <!-- নোটিফিকেশন ১: মিটিং নিয়ে -->
+        <div class="noti-card" onclick="openPopup('meeting')">
+            <div class="noti-icon-box">
+                <i class="fas fa-video"></i>
+            </div>
+            <div class="noti-content">
+                <h3>📢 লাইভ মিটিংয়ের সময়সূচি ঘোষণা!</h3>
+                <p>আজ রাত ৮ টায় আমাদের বিশেষ গুরুত্বপূর্ণ লাইভ মিটিং অনুষ্ঠিত হবে। সব মেম্বারদের উপস্থিত থাকার জন্য অনুরোধ করা হলো।</p>
+                <span class="noti-time"><i class="far fa-clock"></i> ১০ মিনিট আগে</span>
+            </div>
+        </div>
+
+        <!-- নোটিফিকেশন ২: ওয়েলকাম ও কাজের বিবরণ নিয়ে -->
+        <div class="noti-card" onclick="openPopup('welcome')">
+            <div class="noti-icon-box">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="noti-content">
+                <h3>🎉 Mart-Lp তে স্বাগতম! জানুন আপনার কাজ</h3>
+                <p>আজই আপনার সফলতার যাত্রা শুরু করুন! ঘরে বসে কাজ করুন, প্রতিদিন আয়ের সুযোগ এবং ফ্রি ট্রেনিং নিন।</p>
+                <span class="noti-time"><i class="far fa-clock"></i> ২ ঘণ্টা আগে</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- প্রফেশনাল পপআপ ওভারলে ও বক্স -->
+    <div id="custom-noti-popup-overlay" onclick="closeCustomNotification(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(3px); z-index: 99998; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+        <div id="custom-noti-popup" class="aypoth-popup-box" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 380px; background: white; color: #333; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); padding: 16px; z-index: 99999; border: 1px solid rgba(255, 126, 95, 0.2); box-sizing: border-box; animation: popupScale 0.25s ease; font-family: 'Poppins', sans-serif;">
+                
+            <!-- প্রিমিয়াম ক্রস বাটন -->
+            <div onclick="closeCustomNotification(event)" style="position: absolute; top: -11px; right: -11px; width: 30px; height: 30px; background: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(255, 94, 98, 0.4); z-index: 100000; line-height: 1;">
+                &times;
+            </div>
+            
+            <!-- পপআপ টাইটেল (কমলা-হলুদ ছোঁয়া) -->
+            <div style="text-align: center; margin-bottom: 12px; border-bottom: 2px solid #fff3ec; padding-bottom: 8px;">
+                <span id="popup-title" style="font-weight: 700; font-size: 15px; color: #ea580c;">🎉 Mart-Lp তে স্বাগতম! 🎉</span>
+            </div>
+            
+            <!-- কভার ছবি -->
+            <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img id="popup-img" src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/ChatGPT%20Image%20Oct%2015%2C%202026%2C%2008_01_26%20PM.png" alt="Banner" style="width: 100%; display: block; object-fit: cover; max-height: 170px;">
+            </div>
+
+            <!-- পপআপ বডি টেক্সট / ডিটেইলস -->
+            <div id="popup-body-content" style="font-family: 'Poppins', sans-serif;">
+                <!-- ডায়নামিক ডাটা এখানে লোড হবে -->
+            </div>
+
+            <!-- টেলিগ্রাম বাটন -->
+            <a href="https://t.me/+EzlWlXmKq8I0YmY9" target="_blank" style="display: block; text-align: center; background: linear-gradient(135deg, #0088cc 0%, #00a8ff 100%); color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 10px; box-shadow: 0 4px 12px rgba(0, 136, 204, 0.35); transition: 0.2s;">
+                <i class="fab fa-telegram-plane" style="margin-right: 6px;"></i> টেলিগ্রামে লিংক পান
+            </a>
+        </div>
+    </div>
+
+    <!-- জাভাস্ক্রিপ্ট লজিক -->
+    <script>
+        function openPopup(type) {
+            const overlay = document.getElementById('custom-noti-popup-overlay');
+            const titleElem = document.getElementById('popup-title');
+            const contentElem = document.getElementById('popup-body-content');
+            
+            if (type === 'meeting') {
+                titleElem.innerText = "📢 লাইভ মিটিংয়ের বিস্তারিত";
+                contentElem.innerHTML = `
+                    <div style="margin: 0 0 8px 0; font-size: 12px; color: #1e293b; line-height: 1.5; text-align: left; background: #fff7ed; padding: 10px 12px; border-radius: 8px; border-left: 3.5px solid #f97316;">
+                        <b style="font-size: 13px; color: #c2410c; display: block; margin-bottom: 3px;">আজ রাত ৮:০০ টায় স্পেশাল মিটিং</b>
+                        আমাদের আজকের মিটিংয়ে নতুন আপডেট, কাজ করার সঠিক নিয়ম এবং আপনাদের প্রশ্নউত্তর পর্ব থাকবে। সবাই সময়মতো জয়েন করুন।<br>
+                        <span style="display: inline-block; margin-top: 6px; color: #9a3412; font-weight: 500;">⏰ সময়: রাত ৮:০০ টা | 💻 মাধ্যম: লাইভ সেশন</span>
+                    </div>
+                `;
+            } else if (type === 'welcome') {
+                titleElem.innerText = "🎉 Mart-Lp তে স্বাগতম! 🎉";
+                contentElem.innerHTML = `
+                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fffbeb; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                        <b style="font-size: 12.5px; color: #b45309;">বাংলাদেশের স্মার্ট ডিজিটাল আয়ের প্ল্যাটফর্ম</b><br>
+                        আজই আপনার সফলতার যাত্রা শুরু করুন! 
+                        💼 ঘরে বসে কাজ করুন | 💰 প্রতিদিন আয়ের সুযোগ | 🎯 ফ্রি ট্রেনিং | 🚀 আজই যোগ দিন
+                    </div>
+                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fff1f2; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #e11d48;">
+                        <b style="font-size: 12.5px; color: #be123c;">স্বপ্ন নয়, এবার বাস্তব আয়!</b><br>
+                        আজই Mart-Lp পরিবারের সদস্য হোন<br>
+                        ✅ ফ্রি গাইডলাইন | ✅ লাইভ সাপোর্ট | ✅ টিমওয়ার্ক | ✅ দ্রুত আয়ের সুযোগ
+                    </div>
+                `;
+            }
+
+            overlay.style.display = 'flex';
+        }
+
+        function closeCustomNotification(event) {
+            document.getElementById('custom-noti-popup-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
 
