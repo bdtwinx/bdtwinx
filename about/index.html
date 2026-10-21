@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Mart-Lp</title>
+    <!-- FontAwesome ও Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #fdfbf7;
+            color: #333;
+            animation: fadeInBody 0.4s ease-in-out;
+        }
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* প্রফেশনাল কমলা-হলুদ গ্রেডিয়েন্ট হেডার */
+        .about-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.25);
+            z-index: 1000;
+        }
+        .back-btn {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+        }
+        .back-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0.95);
+        }
+        .about-header h1 {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* মূল কন্টেইনার */
+        .about-container {
+            padding: 20px 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* সেকশন হেডিং */
+        .section-title {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 20px 0 10px 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title i {
+            color: #ff7e5f;
+        }
+
+        /* ইনফো কার্ড */
+        .info-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.6;
+            transition: transform 0.2s;
+        }
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 126, 95, 0.08);
+        }
+
+        /* প্রফেশনাল সেন্টার্ড এডমিন প্রোফাইল কার্ড (পুরোটাতে ক্লিক করলে পপআপ আসবে) */
+        .admin-profile-box {
+            background: white;
+            padding: 22px 18px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            border: 1.5px solid rgba(255, 126, 95, 0.25);
+            margin-bottom: 15px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .admin-profile-box:hover {
+            box-shadow: 0 10px 25px rgba(255, 126, 95, 0.2);
+            transform: translateY(-3px);
+            border-color: #ff7e5f;
+        }
+        
+        /* মাঝখানে বড় গোল ছবি */
+        .admin-avatar-large {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 12px auto;
+            border: 3.5px solid #ff7e5f;
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.3);
+        }
+        .admin-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .admin-details h3 {
+            font-size: 17px;
+            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+        .admin-details span {
+            display: inline-block;
+            font-size: 12px;
+            color: #ea580c;
+            background: #fff7ed;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            border: 1px solid #ffedd5;
+        }
+        .admin-details p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+        
+        /* ক্লিকের ছোট হিন্ট বা আইকন */
+        .click-hint {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #ff7e5f;
+            background: #fff3ec;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* ফিচার লিস্ট */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .feature-item {
+            background: white;
+            padding: 14px 12px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 126, 95, 0.3);
+            box-shadow: 0 6px 15px rgba(255, 126, 95, 0.1);
+        }
+        .feature-item i {
+            font-size: 22px;
+            color: #ff7e5f;
+            margin-bottom: 8px;
+        }
+        .feature-item h4 {
+            font-size: 13px;
+            color: #1e293b;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+        .feature-item p {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* প্রিমিয়াম স্মুথ পপআপ অ্যানিমেশন */
+        @keyframes overlayFadeIn {
+            from { opacity: 0; backdrop-filter: blur(0px); }
+            to { opacity: 1; backdrop-filter: blur(4px); }
+        }
+        @keyframes popupScaleUp {
+            0% { transform: scale(0.7); opacity: 0; }
+            70% { transform: scale(1.03); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .popup-overlay-anim {
+            animation: overlayFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .popup-box-anim {
+            animation: popupScaleUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* পপআপ কন্টাক্ট আইটেম স্টাইল */
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            background: #f8fafc;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .contact-link-item:hover {
+            border-color: #ff7e5f;
+            background: #fff7ed;
+            transform: translateX(3px);
+        }
+        .contact-link-item i {
+            font-size: 16px;
+            width: 26px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="about-header">
+        <a href="https://martlp.com/" class="back-btn" title="Back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>আমাদের সম্পর্কে (About Us)</h1>
+    </header>
+
+    <!-- মূল কন্টেইনার -->
+    <div class="about-container">
+        
+        <!-- এডমিন প্রোফাইল সেকশন (পুরো কার্ডে ক্লিক করলে পপআপ ওপেন হবে) -->
+        <div class="section-title">
+            <i class="fas fa-user-shield"></i> প্ল্যাটফর্ম প্রতিষ্ঠাতা ও এডমিন
+        </div>
+        
+        <div class="admin-profile-box" onclick="openAdminPopup()">
+            <div class="admin-avatar-large">
+                <img src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/ChatGPT%20Image%20Oct%2015%2C%202026%2C%2008_01_26%20PM.png" alt="Abu Sufian">
+            </div>
+            <div class="admin-details">
+                <h3>Abu Sufian</h3>
+                <span>প্রধান নির্বাহী ও এডমিন</span>
+                <p>টেকনিক্যাল ডেভেলপমেন্ট, সাপোর্ট এবং সার্বিক ব্যবস্থাপনার দায়িত্বে নিয়োজিত।</p>
+                <div class="click-hint">
+                    <i class="fas fa-address-card"></i> যোগাযোগের জন্য ট্যাপ করুন
+                </div>
+            </div>
+        </div>
+
+        <!-- প্ল্যাটফর্মের বৈশিষ্ট্য -->
+        <div class="section-title">
+            <i class="fas fa-star"></i> আমাদের প্রধান সুবিধাসমূহ
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <h4>১০০% বিশ্বস্ত</h4>
+                <p>নিরাপদ ও হালাল মাধ্যম</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-bolt"></i>
+                <h4>দ্রুত পেমেন্ট</h4>
+                <p>বিকাশ ও নগদে ক্যাশআউট</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset"></i>
+                <h4>২৪/৭ সাপোর্ট</h4>
+                <p>সবসময় পাশে আছি</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-graduation-cap"></i>
+                <h4>ফ্রি ট্রেনিং</h4>
+                <p>দক্ষতা বৃদ্ধির সুযোগ</p>
+            </div>
+        </div>
+
+        <!-- বিস্তারিত বিবরণ -->
+        <div class="section-title">
+            <i class="fas fa-info-circle"></i> আমাদের লক্ষ্য ও উদ্দেশ্য
+        </div>
+        <div class="info-card">
+            <b>Mart-Lp</b> প্ল্যাটফর্মের মূল লক্ষ্য হলো বেকারত্ব দূর করা এবং ছাত্র-ছাত্রী ও ঘরে থাকা নারীদের জন্য একটি নির্ভরযোগ্য অনলাইন আয়ের উৎস তৈরি করা। সঠিক গাইডলাইন, সহজ টাস্ক এবং প্রফেশনাল টিমওয়ার্কের মাধ্যমে আমরা একটি শক্তিশালী কমিউনিটি গড়ে তুলছি।
+        </div>
+
+    </div>
+
+    <!-- এডমিন কন্টাক্ট পপআপ ওভারলে (অ্যানিমেটেড) -->
+    <div id="admin-popup-overlay" onclick="closeAdminPopup(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 99998; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+        <div id="admin-popup-box" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 360px; background: white; color: #333; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); padding: 22px 18px 18px 18px; z-index: 99999; border: 1px solid rgba(255, 126, 95, 0.25); box-sizing: border-box; text-align: center;">
+                
+            <!-- ক্রস বাটন -->
+            <div onclick="closeAdminPopup(event)" style="position: absolute; top: -12px; right: -12px; width: 32px; height: 32px; background: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(255, 94, 98, 0.4); z-index: 100000; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                &times;
+            </div>
+            
+            <!-- পপআপের উপরে গোল বড় এডমিন ছবি -->
+            <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px auto; border: 3px solid #ff7e5f; box-shadow: 0 5px 15px rgba(255, 126, 95, 0.3);">
+                <img src="https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/ChatGPT%20Image%20Oct%2015%2C%202026%2C%2008_01_26%20PM.png" alt="Abu Sufian" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- এডমিন নাম ও পদবি -->
+            <h3 style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 2px;">Abu Sufian</h3>
+            <span style="font-size: 11.5px; color: #ea580c; background: #fff7ed; padding: 2px 10px; border-radius: 20px; font-weight: 600; display: inline-block; margin-bottom: 14px; border: 1px solid #ffedd5;">প্রধান নির্বাহী ও এডমিন</span>
+
+            <!-- কন্টাক্ট লিংকসমূহ -->
+            <div style="text-align: left;">
+                <!-- ফোন নম্বর -->
+                <a href="tel:+8809658-604080" class="contact-link-item">
+                    <i class="fas fa-phone-alt" style="color: #10b981;"></i>
+                    <span>+8809658-604080</span>
+                </a>
+
+                <!-- টেলিগ্রাম -->
+                <a href="https://t.me/Dev_Sufian" target="_blank" class="contact-link-item">
+                    <i class="fab fa-telegram-plane" style="color: #0088cc;"></i>
+                    <span>টেলিগ্রাম মেসেজ / সাপোর্ট</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- জাভাস্ক্রিপ্ট অ্যানিমেশন লজিক -->
+    <script>
+        function openAdminPopup() {
+            const overlay = document.getElementById('admin-popup-overlay');
+            const box = document.getElementById('admin-popup-box');
+            
+            overlay.style.display = 'flex';
+            overlay.classList.add('popup-overlay-anim');
+            box.classList.add('popup-box-anim');
+        }
+
+        function closeAdminPopup(event) {
+            const overlay = document.getElementById('admin-popup-overlay');
+            const box = document.getElementById('admin-popup-box');
+            
+            overlay.style.display = 'none';
+            overlay.classList.remove('popup-overlay-anim');
+            box.classList.remove('popup-box-anim');
+        }
+    </script>
+</body>
+</html>
