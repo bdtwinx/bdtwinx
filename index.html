@@ -3016,15 +3016,16 @@ function toggleSignupPassword() {
   <div class="header-right-actions">
     <div class="ticker-notification">
       <button
-        type="button"
-        onclick="openCustomNotification(event)"
-        class="notification-btn"
-        title="Notifications"
-        aria-label="Notifications"
-      >
-        <i class="fas fa-bell notification-icon-grad"></i>
-        <span id="custom-noti-dot" class="notification-dot">1</span>
-      </button>
+  type="button"
+  onclick="window.location.href='https://martlp.com/notifications'"
+  class="notification-btn"
+  title="Notifications"
+  aria-label="Notifications"
+>
+  <i class="fas fa-bell notification-icon-grad"></i>
+</button>
+
+
     </div>
   </div>
 </nav>
@@ -3200,55 +3201,6 @@ function toggleSignupPassword() {
 }
 </style>
   
-<div id="custom-noti-popup-overlay" onclick="closeCustomNotification(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 99998; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box;">
-<div id="custom-noti-popup" class="aypoth-popup-box" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 380px; background: white; color: #333; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); padding: 14px; z-index: 99999; border: 1px solid rgba(0,0,0,0.1); box-sizing: border-box; animation: popupScale 0.3s ease; font-family: 'Poppins', sans-serif;">
-        
-    <div onclick="closeCustomNotification(event)" style="position: absolute; top: -10px; right: -10px; width: 28px; height: 28px; background: #ff1744; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 6px rgba(255, 23, 68, 0.4); z-index: 100000; line-height: 1;">
-        &times;
-    </div>
-    
-    <div style="text-align: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-        <span style="font-weight: 700; font-size: 14px; color: #333;">🎉 Mart-Lp তে স্বাগতম! 🎉</span>
-    </div>
-    
-    <!-- কভার ছবির সাইজ বড় করা হয়েছে -->
-    <div style="width: 100%; border-radius: 6px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-        <img src="
-          
-        https://raw.githubusercontent.com/bdtwinx/bdtwinx/refs/heads/main/ChatGPT%20Image%20Oct%2015%2C%202026%2C%2008_01_26%20PM.png
-          
-          " alt="Live Meeting Banner" style="width: 100%; display: block; object-fit: cover; max-height: 170px;">
-    </div>
-
-    <div style="font-family: 'Poppins', sans-serif;">
-        
-        <!-- অপশন–১ (প্রিমিয়াম) -->
-        <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #f8fafc; padding: 7px 10px; border-radius: 6px; border-left: 3px solid #3b82f6;">
-            <b style="font-size: 12.5px; color: #1d4ed8;">বাংলাদেশের স্মার্ট ডিজিটাল আয়ের প্ল্যাটফর্ম</b><br>
-            আজই আপনার সফলতার যাত্রা শুরু করুন! 
-            💼 ঘরে বসে কাজ করুন | 💰 প্রতিদিন আয়ের সুযোগ | 🎯 ফ্রি ট্রেনিং | 🚀 আজই যোগ দিন
-        </div>
-
-        <!-- অপশন–২ (মার্কেটিং স্টাইল) -->
-        <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fdf2f8; padding: 7px 10px; border-radius: 6px; border-left: 3px solid #db2777;">
-            <b style="font-size: 12.5px; color: #be185d;">স্বপ্ন নয়, এবার বাস্তব আয়!</b><br>
-            আজই Mart-Lp পরিবারের সদস্য হোন<br>
-            ✅ ফ্রি গাইডলাইন | ✅ লাইভ সাপোর্ট | ✅ টিমওয়ার্ক | ✅ দ্রুত আয়ের সুযোগ
-        </div>
-
-        <!-- অপশন–৩ (সবচেয়ে আকর্ষণীয়) -->
-        <div style="margin: 0 0 10px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fefce8; padding: 7px 10px; border-radius: 6px; border-left: 3px solid #ca8a04;">
-            <b style="font-size: 12.5px; color: #a16207;">আপনার সফলতার নতুন ঠিকানা - Mart-Lp</b><br>
-            📈 শিখুন • কাজ করুন • আয় করুন | 🔥 সীমিত সময়ের সুযোগ | 🎁 নতুনদের এক্সক্লুসিভ সুবিধা
-        </div>
-
-        <a href="https://t.me/+EzlWlXmKq8I0YmY9" target="_blank" style="display: block; text-align: center; background: linear-gradient(135deg, #0088cc 0%, #00a8ff 100%); color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-size: 12.5px; font-weight: 700; margin-top: 8px; box-shadow: 0 3px 8px rgba(0, 136, 204, 0.3);">
-            <i class="fab fa-telegram-plane" style="margin-right: 5px;"></i> টেলিগ্রামে লিংক পান
-        </a>
-    </div>
-</div>
-</div>
-
 <style>
     @keyframes popupScale {
         from { transform: scale(0.85); opacity: 0; }
