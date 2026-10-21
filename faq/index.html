@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Mart-Lp</title>
+    <!-- FontAwesome ও Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #333;
+        }
+        
+        /* প্রফেশনাল কমলা-হলুদ গ্রেডিয়েন্ট হেডার */
+        .faq-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.25);
+            z-index: 1000;
+        }
+        .back-btn {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+        }
+        .back-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0.95);
+        }
+        .faq-header h1 {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* মূল কন্টেইনার */
+        .faq-container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* সার্চ বক্স স্টাইল */
+        .search-box-wrap {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .search-box-wrap input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 13.5px;
+            background: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            outline: none;
+            transition: all 0.2s;
+        }
+        .search-box-wrap input:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 0 3px rgba(255, 126, 95, 0.15);
+        }
+        .search-box-wrap i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        /* FAQ আইটেম (অর্ডিয়ন) */
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .faq-question {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #1e293b;
+            user-select: none;
+        }
+        .faq-question i {
+            color: #94a3b8;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: #ff7e5f;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 16px;
+            background: #fdfbf7;
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.5;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            border-top: 1px solid transparent;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 12px 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        /* ফুটার বা সাপোর্ট সেকশন */
+        .support-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+        .support-section p {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+        .support-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            text-decoration: none;
+            padding: 11px 24px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 126, 95, 0.3);
+            transition: transform 0.2s;
+        }
+        .support-btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="faq-header">
+        <a href="https://martlp.com/" class="back-btn" title="Back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>সচরাচর প্রশ্ন (FAQ)</h1>
+    </header>
+
+    <!-- মূল কন্টেন্ট -->
+    <div class="faq-container">
+        
+        <!-- সার্চ বক্স -->
+        <div class="search-box-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="faqSearch" placeholder="আপনার প্রশ্ন সার্চ করুন..." onkeyup="searchFaq()">
+        </div>
+
+        <!-- FAQ লিস্ট (ছবি অনুযায়ী) -->
+        <div class="faq-list" id="faqList">
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি কীভাবে Mart-Lp থেকে উপার্জন শুরু করব?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Mart-Lp তে অ্যাকাউন্ট তৈরি করার পর ড্যাশবোর্ড থেকে নির্দিষ্ট টাস্ক সম্পন্ন করে এবং রেফার করে খুব সহজেই উপার্জন শুরু করতে পারবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি আমার উপার্জন কীভাবে উত্তোলন করব?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    আপনার ওয়ালেটের ব্যালেন্স নির্দিষ্ট সীমার উপরে গেলে পেমেন্ট অপশন থেকে বিকাশ, নগদ বা ব্যাংক অ্যাকাউন্টের মাধ্যমে উত্তোলন করতে পারবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Mart-Lp কি শরীহাহ সম্মত?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    হ্যাঁ, Mart-Lp-এর কার্যপদ্ধতি সম্পূর্ণ হালাল এবং শরীহাহ আইন মেনে পরিচালিত ডিজিটাল আয়ের প্ল্যাটফর্ম।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>সাবস্ক্রিপশন ফি কত?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    সাবস্ক্রিপশন ফি সম্পর্কিত বিস্তারিত তথ্য এবং প্যাকেজগুলো আমাদের অফিশিয়াল নোটিশ বোর্ড অথবা পেমেন্ট পেজে দেখতে পাবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>রেফারেল সিস্টেমটি কীভাবে কাজ করে?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    আপনার রেফারেল লিংকটি বন্ধুদের সাথে শেয়ার করুন। তারা জয়েন করলে এবং একটি্টিভ হলে আপনি আকর্ষণীয় কমিশন বোনাস পাবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি কি ধরনের টাস্ক সম্পন্ন করতে পারি?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    এখানে সোশ্যাল মিডিয়া প্রমোশন, ভিডিও দেখা, ছোট ছোট প্রজেক্ট এবং বিভিন্ন ডিজিটাল সার্ভিস রিলেটেড টাস্ক পাওয়া যায়।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি কি আমার নিজস্ব সেবা বা পণ্য বিক্রি করতে পারি?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    হ্যাঁ, উপযুক্ত নিয়মাচার মেনে আপনি Mart-Lp প্ল্যাটফর্মে আপনার সেবা বা পণ্য প্রচার ও বিক্রি করতে পারবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি কীভাবে ভেরিফাইড ইউজার হব?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    প্রয়োজনীয় তথ্য দিয়ে প্রোফাইল ভেরিফিকেশন সম্পন্ন করলে খুব সহজেই Mart-Lp এর ভেরিফাইড ইউজার badge পেয়ে যাবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>আমি নতুন স্কিল কোথায় শিখতে পারি?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    আমাদের প্ল্যাটফর্মে নতুনদের জন্য ফ্রি ট্রেনিং সেশন এবং গাইডলাইন প্রদান করা হয়, যেখান থেকে আপনি বিভিন্ন স্কিল শিখতে পারবেন।
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>যদি কোনো সমস্যা হয় বা সাহায্যের প্রয়োজন হয়?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    যেকোনো সমস্যায় আমাদের টেলিগ্রাম সাপোর্ট গ্রুপ বা নিচের সাপোর্ট বাটনে ক্লিক করে সরাসরি যোগাযোগ করতে পারেন।
+                </div>
+            </div>
+
+        </div>
+
+        <!-- সাপোর্ট সেকশন -->
+        <div class="support-section">
+            <p>আপনার এখনও সাহায্য লাগবে?</p>
+            <a href="https://t.me/+EzlWlXmKq8I0YmY9" target="_blank" class="support-btn">
+                সাপোর্টে যোগাযোগ করুন
+            </a>
+        </div>
+
+    </div>
+
+    <!-- জাভাস্ক্রিপ্ট লজিক -->
+    <script>
+        // প্রশ্ন টগল করার ফাংশন (Accordion)
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            
+            // অন্যান্য খোলা আইটেম বন্ধ করতে চাইলে (ঐচ্ছিক)
+            // const allItems = document.querySelectorAll('.faq-item');
+            // allItems.forEach(item => { if(item !== parent) item.classList.remove('active'); });
+
+            parent.classList.toggle('active');
+        }
+
+        // লাইভ সার্চ ফাংশন
+        function searchFaq() {
+            let input = document.getElementById('faqSearch').value.toLowerCase();
+            let items = document.getElementsByClassName('faq-item');
+
+            for (let i = 0; i < items.length; i++) {
+                let questionText = items[i].querySelector('.faq-question span').innerText.toLowerCase();
+                if (questionText.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
