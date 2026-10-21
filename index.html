@@ -3514,8 +3514,7 @@ function toggleSidebar() {
 
   <!-- Header -->
   <div class="social-join-header">
-    <i class="fas fa-comment-dots header-msg-icon"></i>
-    <span>আমাদের সাথে যুক্ত থাকুন :</span>
+    
   </div>
 
   <!-- Social Icons Grid -->
@@ -3529,16 +3528,16 @@ function toggleSidebar() {
       <span class="social-label">ফেসবুক পেইজ</span>
     </a>
 
-    <!-- 2. TikTok (WhatsApp বাদ দিয়ে TikTok যুক্ত করা হয়েছে) -->
-    <a class="social-item" href="" target="_blank" aria-label="TikTok">
+    <!-- 2. TikTok -->
+    <a class="social-item" href="https://martlp.com/" target="_blank" aria-label="TikTok">
       <div class="social-box">
         <i class="fab fa-tiktok"></i>
       </div>
       <span class="social-label">টিকটক</span>
     </a>
 
-    <!-- 3. Telegram (রিভিউ গ্রুপের জায়গায় Telegram যুক্ত করা হয়েছে) -->
-    <a class="social-item" href="" target="_blank" aria-label="Telegram Channel">
+    <!-- 3. Telegram -->
+    <a class="social-item" href="https://martlp.com/" target="_blank" aria-label="Telegram Channel">
       <div class="social-box">
         <i class="fab fa-telegram-plane"></i>
       </div>
@@ -3546,7 +3545,7 @@ function toggleSidebar() {
     </a>
 
     <!-- 4. YouTube Channel -->
-    <a class="social-item" href="" target="_blank" aria-label="YouTube Channel">
+    <a class="social-item" href="https://martlp.com/" target="_blank" aria-label="YouTube Channel">
       <div class="social-box">
         <i class="fab fa-youtube"></i>
       </div>
@@ -3563,9 +3562,9 @@ function toggleSidebar() {
 .social-join-wrapper {
   width: 100%;
   max-width: 600px;
-  background: #f4f4f4;
-  border-radius: 12px;
-  padding: 14px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0 8px;
   box-sizing: border-box;
   font-family: 'Hind Siliguri', 'Poppins', sans-serif;
   margin: 10px auto;
@@ -3576,29 +3575,30 @@ function toggleSidebar() {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: #222222;
   margin-bottom: 12px;
+  padding-left: 4px;
 }
 
 .header-msg-icon {
-  font-size: 20px;
+  font-size: 18px;
   color: #ff7700;
   background: linear-gradient(135deg, #ff4500, #ffaa00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Grid Layout for 4 Items */
+/* Grid Layout for 4 Items (Background Removed) */
 .social-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  background: #ffffff;
-  padding: 12px 8px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /* Individual Social Item Wrapper */
@@ -3620,53 +3620,61 @@ function toggleSidebar() {
 
 /* Orange-Yellow Gradient Small Square Box */
 .social-box {
-  width: 44px;              /* ছোট ও মানানসই সাইজ */
-  height: 44px;
+  width: 52px;              
+  height: 52px;
   background: linear-gradient(135deg, #ff4500 0%, #ff7700 50%, #ffaa00 100%);
-  border-radius: 10px;      /* ছোট সাইজের সাথে সামঞ্জস্য রেখে বর্ডার রেডিয়াস */
+  border-radius: 12px;      
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 8px rgba(255, 69, 0, 0.22);
+  box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
+  border: 2px solid #ffffff;
+  outline: 2px solid #ffe0b2;
   margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+
+.social-item:hover .social-box {
+  box-shadow: 0 6px 16px rgba(255, 69, 0, 0.35);
+  outline-color: #ffaa00;
 }
 
 .social-box i {
-  font-size: 20px;          /* বক্স অনুযায়ী আইকন সাইজ */
+  font-size: 22px;          
   color: #ffffff;
 }
 
 /* Bangla Text Label Below Icon */
 .social-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   color: #333333;
   text-align: center;
-  white-space: nowrap;
+  line-height: 1.3;
+  word-break: break-word;
 }
 
-/* Responsive Support for Small Screens (More Compact) */
-@media (max-width: 480px) {
+/* Responsive Support for Small Screens */
+@media (max-width: 420px) {
   .social-join-wrapper {
-    padding: 10px;
+    padding: 0 4px;
   }
   .social-join-header {
-    font-size: 15px;
+    font-size: 14px;
   }
   .social-grid {
     gap: 6px;
-    padding: 10px 4px;
   }
   .social-box {
-    width: 38px;           /* মোবাইলের জন্য আরও কিউট ছোট সাইজ */
-    height: 38px;
-    border-radius: 8px;
+    width: 46px;           
+    height: 46px;
+    border-radius: 10px;
   }
   .social-box i {
-    font-size: 17px;
+    font-size: 19px;
   }
   .social-label {
-    font-size: 10.5px;
+    font-size: 10px;
   }
 }
 </style>
@@ -4067,47 +4075,46 @@ function showCompanyTerms(){
   
 
 <div class="container mt-2" style="padding: 0 16px; font-family: 'Poppins', sans-serif;">
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap');
 
-/* মূল প্রজেক্ট কার্ড কন্টেইনার */
+/* মূল কন্টেইনার (ব্যাকগ্রাউন্ড ও বর্ডার রিমুভ করা হয়েছে) */
 .project-wrapper-card {
   width: 100%;
   max-width: 600px;
   box-sizing: border-box;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 18px 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f0f0f0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0 8px;
+  box-shadow: none;
+  border: none;
   font-family: 'Hind Siliguri', sans-serif;
   margin: 10px auto;
 }
 
-/* হেডার শিরোনাম */
-.project-title {
+/* সেকশন হেডার শিরোনাম */
+.section-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff7700;
+  margin: 16px 0 10px 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 18px;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed #eee;
+  gap: 6px;
+  border-left: 3px solid #ff7700;
+  padding-left: 8px;
+  background: #fff8f0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 0 6px 6px 0;
 }
 
-.project-title i {
-  color: #ff7700;
-  font-size: 18px;
-}
-
-/* ৪ কলামের গ্রিড (এক লাইনে ৪টি) */
+/* ৪ কলামের গ্রিড */
 .project-grid-4col {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px 8px;
+  gap: 16px 8px;
+  margin-bottom: 12px;
 }
 
 /* বাটন কার্ড স্টাইল */
@@ -4122,16 +4129,17 @@ function showCompanyTerms(){
   border: none;
   padding: 0;
   transition: transform 0.2s ease;
+  text-decoration: none;
 }
 
 .project-card:active {
   transform: scale(0.92);
 }
 
-/* গোল আইকন বক্স (বড় সাইজ করা হয়েছে: 64px) */
+/* গোল আইকন বক্স */
 .circle-icon-box {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ff4500 0%, #ff7700 50%, #ffaa00 100%);
   display: flex;
@@ -4140,7 +4148,7 @@ function showCompanyTerms(){
   box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
   border: 3px solid #ffffff;
   outline: 2px solid #ffe0b2;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   transition: all 0.3s ease;
 }
 
@@ -4150,256 +4158,169 @@ function showCompanyTerms(){
   outline-color: #ffaa00;
 }
 
-/* আইকন বড় সাইজ (26px) */
+/* আইকন সাইজ */
 .circle-icon-box i {
-  font-size: 26px;
+  font-size: 24px;
   color: #ffffff;
 }
 
-/* টেক্সট ডিজাইন (12px) */
+/* টেক্সট ডিজাইন */
 .project-card span {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #333333;
   line-height: 1.3;
   word-break: break-word;
 }
 
-/* রেসপন্সিভ (ছোট স্ক্রিনের জন্য) */
+/* রেসপন্সিভ */
 @media (max-width: 420px) {
-  .project-wrapper-card { padding: 14px 8px; }
-  .project-grid-4col { gap: 14px 4px; }
-  .circle-icon-box { width: 56px; height: 56px; }
-  .circle-icon-box i { font-size: 22px; }
-  .project-card span { font-size: 11px; }
+  .project-wrapper-card { padding: 0 4px; }
+  .project-grid-4col { gap: 12px 4px; }
+  .circle-icon-box { width: 52px; height: 52px; }
+  .circle-icon-box i { font-size: 20px; }
+  .project-card span { font-size: 10px; }
 }
 </style>
 
 <!-- মূল কন্টেইনার -->
 <div class="project-wrapper-card">
-  
 
-  <!-- ৪ কলামের গ্রিড (৩৬টি বাটন) -->
+  <!-- ক্যাটাগরি ১: আয় ও সার্ভিস সমূহ -->
+  <div class="section-heading"><i class="fas fa-briefcase"></i> আয় ও সার্ভিস সমূহ</div>
   <div class="project-grid-4col">
-    
-    <!-- ১ -->
-    <div class="project-card" onclick="handleProjectClick('Reselling Product')">
-      <div class="circle-icon-box"><i class="fas fa-box-open"></i></div>
-      <span>রিসেলিং প্রডাক্ট</span>
-    </div>
-
-    <!-- ২ -->
-    <div class="project-card" onclick="handleProjectClick('Mobile Recharge')">
-      <div class="circle-icon-box"><i class="fas fa-mobile-alt"></i></div>
-      <span>মোবাইল রিচার্জ</span>
-    </div>
-
-    <!-- ৩ -->
-    <div class="project-card" onclick="handleProjectClick('Drive Offers')">
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-wifi"></i></div>
       <span>ড্রাইভ অফার</span>
-    </div>
-
-    <!-- ৪ -->
-    <div class="project-card" onclick="handleProjectClick('Micro Job')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-tasks"></i></div>
       <span>মাইক্রো জব</span>
-    </div>
-
-    <!-- ৫ -->
-    <div class="project-card" onclick="handleProjectClick('Job Post')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-bullhorn"></i></div>
       <span>জব পোস্ট</span>
-    </div>
-
-    <!-- ৬ -->
-    <div class="project-card" onclick="handleProjectClick('SMM Work')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-share-alt"></i></div>
       <span>এসএমএম ওয়ার্ক</span>
-    </div>
-
-    <!-- ৭ -->
-    <div class="project-card" onclick="handleProjectClick('Digital Service')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-laptop-code"></i></div>
       <span>ডিজিটাল সার্ভিস</span>
-    </div>
-
-    <!-- ৮ -->
-    <div class="project-card" onclick="handleProjectClick('Course Sell')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-graduation-cap"></i></div>
       <span>কোর্স সেল</span>
-    </div>
-
-    <!-- ৯ -->
-    <div class="project-card" onclick="handleProjectClick('Vendorship')">
-      <div class="circle-icon-box"><i class="fas fa-store"></i></div>
-      <span>ভেন্ডরশিপ</span>
-    </div>
-
-    <!-- ১০ -->
-    <div class="project-card" onclick="handleProjectClick('Bill Pay')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
       <span>বিল পে</span>
-    </div>
-
-    <!-- ১১ -->
-    <div class="project-card" onclick="handleProjectClick('Freelancing')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-laptop"></i></div>
       <span>ফ্রিল্যান্সিং</span>
-    </div>
+    </a>
+  </div>
 
-    <!-- ১২ -->
-    <div class="project-card" onclick="handleProjectClick('Buy & Sell')">
+  <!-- ক্যাটাগরি ২: কমিউনিটি ও ট্রেডিং -->
+  <div class="section-heading"><i class="fas fa-users"></i> কমিউনিটি ও ট্রেডিং</div>
+  <div class="project-grid-4col">
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-exchange-alt"></i></div>
       <span>বাই এন্ড সেল</span>
-    </div>
-
-    <!-- ১৩ -->
-    <div class="project-card" onclick="handleProjectClick('Team Community')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-users"></i></div>
       <span>টিম কমিউনিটি</span>
-    </div>
-
-    <!-- ১৪ -->
-    <div class="project-card" onclick="handleProjectClick('IQ Test')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-brain"></i></div>
       <span>আইকিউ টেস্ট</span>
-    </div>
-
-    <!-- ১৫ -->
-    <div class="project-card" onclick="handleProjectClick('Task View')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-eye"></i></div>
       <span>টাস্ক ভিউ</span>
-    </div>
+    </a>
+  </div>
 
-    <!-- ১৬ -->
-    <div class="project-card" onclick="handleProjectClick('Daily Bonus')">
+  <!-- ক্যাটাগরি ৩: বোনাস ও টার্গেট -->
+  <div class="section-heading"><i class="fas fa-gift"></i> বোনাস ও টার্গেট</div>
+  <div class="project-grid-4col">
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-gift"></i></div>
       <span>ডেইলি বোনাস</span>
-    </div>
-
-    <!-- ১৭ -->
-    <div class="project-card" onclick="handleProjectClick('Welcome Bonus')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-hand-holding-heart"></i></div>
       <span>ওয়েলকাম বোনাস</span>
-    </div>
-
-    <!-- ১৮ -->
-    <div class="project-card" onclick="handleProjectClick('Team Bonus')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-award"></i></div>
       <span>টিম বোনাস</span>
-    </div>
-
-    <!-- ১৯ -->
-    <div class="project-card" onclick="handleProjectClick('Leadership Rank')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-trophy"></i></div>
       <span>লিডারশিপ র‍্যাংক</span>
-    </div>
-
-    <!-- ২০ -->
-    <div class="project-card" onclick="handleProjectClick('Coupons')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-ticket-alt"></i></div>
       <span>কুপন</span>
-    </div>
-
-    <!-- ২১ -->
-    <div class="project-card" onclick="handleProjectClick('Daily Target')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-calendar-day"></i></div>
       <span>ডেইলি টার্গেট</span>
-    </div>
-
-    <!-- ২২ -->
-    <div class="project-card" onclick="handleProjectClick('Milestone Target')">
-      <div class="circle-icon-box"><i class="fas fa-flag-checkered"></i></div>
-      <span>মাইলস্টোন টার্গেট</span>
-    </div>
-
-    <!-- ২৩ -->
-    <div class="project-card" onclick="handleProjectClick('Monthly Target')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-calendar-alt"></i></div>
       <span>মান্থলি টার্গেট</span>
-    </div>
-
-    <!-- ২৪ -->
-    <div class="project-card" onclick="handleProjectClick('Special Target')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-star"></i></div>
       <span>স্পেশাল টার্গেট</span>
-    </div>
+    </a>
+  </div>
 
-    <!-- ২৫ -->
-    <div class="project-card" onclick="handleProjectClick('Blood Donation')">
+  <!-- ক্যাটাগরি ৪: সামাজিক ও অন্যান্য -->
+  <div class="section-heading"><i class="fas fa-hands-helping"></i> সামাজিক ও অন্যান্য</div>
+  <div class="project-grid-4col">
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-tint"></i></div>
       <span>ব্লাড ডোনেশন</span>
-    </div>
-
-    <!-- ২৬ -->
-    <div class="project-card" onclick="handleProjectClick('Fund Raising')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-hands-helping"></i></div>
       <span>ফান্ড রেইজিং</span>
-    </div>
-
-    <!-- ২৭ -->
-    <div class="project-card" onclick="handleProjectClick('Feedback')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-comments"></i></div>
       <span>ফিডব্যাক</span>
-    </div>
-
-    <!-- ২৮ -->
-    <div class="project-card" onclick="handleProjectClick('Experience')">
-      <div class="circle-icon-box"><i class="fas fa-star-half-alt"></i></div>
-      <span>অভিজ্ঞতা</span>
-    </div>
-
-    <!-- ২৯ -->
-    <div class="project-card" onclick="handleProjectClick('Special Work')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-gem"></i></div>
       <span>স্পেশাল ওয়ার্ক</span>
-    </div>
-
-    <!-- ৩০ -->
-    <div class="project-card" onclick="handleProjectClick('Warning')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-exclamation-triangle"></i></div>
       <span>ওয়ার্নিং</span>
-    </div>
-
-    <!-- ৩১ -->
-    <div class="project-card" onclick="handleProjectClick('Management')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-user-tie"></i></div>
       <span>ম্যানেজমেন্ট</span>
-    </div>
-
-    <!-- ৩২ -->
-    <div class="project-card" onclick="handleProjectClick('Training & Dev')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
       <span>ট্রেনিং এন্ড ডেভ</span>
-    </div>
-
-    <!-- ৩৩ -->
-    <div class="project-card" onclick="handleProjectClick('Support & Mentor')">
-      <div class="circle-icon-box"><i class="fas fa-headset"></i></div>
-      <span>সাপোর্ট ও মেন্টর</span>
-    </div>
-
-    <!-- ৩৪ -->
-    <div class="project-card" onclick="handleProjectClick('Media & Creative')">
+    </a>
+    <a href="https://martlp.com/" class="project-card">
       <div class="circle-icon-box"><i class="fas fa-photo-video"></i></div>
       <span>মিডিয়া এন্ড ক্রিয়েটিভ</span>
-    </div>
-
-    <!-- ৩৫ -->
-    <div class="project-card" onclick="handleProjectClick('Super Active')">
-      <div class="circle-icon-box"><i class="fas fa-bolt"></i></div>
-      <span>সুপার অ্যাক্টিভ</span>
-    </div>
-
-    <!-- ৩৬ -->
-    <div class="project-card" onclick="handleProjectClick('More')">
-      <div class="circle-icon-box"><i class="fas fa-th"></i></div>
-      <span>আরো দেখুন</span>
-    </div>
-
+    </a>
   </div>
+
 </div>
+
+
 <style>
 /* =========================================================
    FREE TIME EARN — PREMIUM CLEAN SIDEBAR
