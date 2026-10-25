@@ -16,8 +16,8 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background-color: #fdfbf7;
-            color: #333;
+            background-color: #ffffff;
+            color: #fff3d1;
         }
         
         /* প্রফেশনাল কমলা-হলুদ গ্রেডিয়েন্ট হেডার */
@@ -27,12 +27,12 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            background: linear-gradient(120deg, #e65100 0%, #ff8f00 48%, #ffd000 100%);
             display: flex;
             align-items: center;
             padding: 0 16px;
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.25);
+            box-shadow: 0 4px 15px rgba(255, 143, 0, 0.38);
             z-index: 1000;
         }
         .back-btn {
@@ -69,22 +69,22 @@
 
         /* প্রফেশনাল নোটিফিকেশন কার্ড */
         .noti-card {
-            background: #ffffff;
+            background: #30200f;
             padding: 14px 16px;
             border-radius: 12px;
             margin-bottom: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
             display: flex;
             align-items: flex-start;
             cursor: pointer;
             transition: all 0.2s ease;
-            border: 1px solid rgba(255, 126, 95, 0.15);
-            border-left: 4px solid #ff7e5f;
+            border: 1px solid rgba(255, 176, 0, 0.32);
+            border-left: 4px solid #ffb300;
             position: relative;
             overflow: hidden;
         }
         .noti-card:hover {
-            box-shadow: 0 6px 18px rgba(255, 126, 95, 0.12);
+            box-shadow: 0 6px 18px rgba(255, 143, 0, 0.22);
             transform: translateY(-1px);
         }
         .noti-card:active {
@@ -96,8 +96,8 @@
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #fff3ec 0%, #fff9e6 100%);
-            color: #f97316;
+            background: linear-gradient(135deg, #e65100 0%, #ffb300 100%);
+            color: #ffc107;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -109,21 +109,21 @@
         .noti-content h3 {
             font-size: 14px;
             font-weight: 600;
-            color: #1e293b;
+            color: #fff1cc;
             margin-bottom: 4px;
         }
         .noti-content p {
             font-size: 12px;
-            color: #64748b;
+            color: #e0c9a1;
             line-height: 1.5;
         }
         .noti-time {
             font-size: 10.5px;
-            color: #f97316;
+            color: #ffc107;
             margin-top: 6px;
             display: inline-block;
             font-weight: 500;
-            background: #fff7ed;
+            background: #4a2a0b;
             padding: 2px 8px;
             border-radius: 4px;
         }
@@ -133,6 +133,110 @@
             from { transform: scale(0.85); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
+        /* ===== MART-LP PREMIUM DEEP ORANGE + GOLD THEME ===== */
+        :root {
+            --ml-orange: #ff6d00;
+            --ml-orange-deep: #bf360c;
+            --ml-gold: #ffc400;
+            --ml-gold-light: #ffe082;
+            --ml-surface: #30200f;
+            --ml-surface-2: #42270d;
+            --ml-text: #fff3d1;
+            --ml-muted: #e0c9a1;
+        }
+        body {
+            background: #ffffff;
+            color: #34210d;
+            min-height: 100vh;
+        }
+        .noti-header {
+            background: linear-gradient(115deg, #c43e00 0%, #f56b00 42%, #ffc400 100%);
+            box-shadow: 0 7px 24px rgba(255, 109, 0, .28);
+            border-bottom: 1px solid rgba(255, 214, 79, .55);
+        }
+        .noti-header h1 { color: #fffdf5; font-weight: 700; }
+        .back-btn {
+            background: rgba(48, 20, 0, .32);
+            border: 1px solid rgba(255,255,255,.28);
+        }
+        .noti-container {
+            padding: 18px 14px 28px;
+            background: #ffffff;
+            color: #34210d;
+            min-height: calc(100vh - 60px);
+        }
+        .noti-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fffaf0 100%);
+            color: #34210d;
+            border: 1px solid rgba(255, 145, 0, .35);
+            border-left: 4px solid #ffb300;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 8px 22px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.035);
+            gap: 0;
+        }
+        .noti-card:hover {
+            border-color: rgba(255, 196, 0, .7);
+            box-shadow: 0 12px 28px rgba(255, 109, 0, .17);
+            transform: translateY(-2px);
+        }
+        .noti-icon-box {
+            background: linear-gradient(145deg, #ff6d00 0%, #ffb300 58%, #ffd740 100%);
+            color: #281303;
+            border-radius: 13px;
+            box-shadow: 0 5px 14px rgba(255, 109, 0, .24);
+        }
+        .noti-content h3 { color: #8a3700; font-size: 14px; line-height: 1.55; }
+        .noti-content p { color: #5f5142; line-height: 1.7; }
+        .noti-time {
+            color: #ffd54f;
+            background: linear-gradient(100deg, #fff0dc, #fff7cc);
+            border: 1px solid rgba(255,145,0,.3);
+            border-radius: 6px;
+            padding: 4px 9px;
+        }
+        #custom-noti-popup-overlay {
+            background: rgba(35, 20, 5, .48) !important;
+            backdrop-filter: blur(8px) !important;
+        }
+        #custom-noti-popup {
+            background: linear-gradient(155deg, #ffffff 0%, #fffaf0 100%) !important;
+            color: #34210d !important;
+            border: 1px solid rgba(255, 193, 7, .62) !important;
+            border-radius: 20px !important;
+            padding: 20px !important;
+            box-shadow: 0 24px 70px rgba(0,0,0,.58), 0 0 0 5px rgba(255,143,0,.07) !important;
+            max-height: 88vh;
+            overflow-y: auto;
+        }
+        #popup-title { color: #b84a00 !important; font-size: 16px !important; }
+        #custom-noti-popup img { border-radius: 12px; }
+        #popup-body-content > div {
+            background: linear-gradient(135deg, #fffaf0, #fff1d6) !important;
+            color: #34210d !important;
+            border: 1px solid rgba(255, 179, 0, .28);
+            border-radius: 12px !important;
+            padding: 12px !important;
+            line-height: 1.7 !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+        }
+        #popup-body-content b { color: #a84000 !important; }
+        #popup-body-content span { color: #8a4b08 !important; }
+        #custom-noti-popup a[href*="t.me"] {
+            background: linear-gradient(110deg, #e65100 0%, #ff8f00 50%, #ffc400 100%) !important;
+            color: #241204 !important;
+            border: 1px solid rgba(255, 224, 130, .5);
+            border-radius: 11px !important;
+            box-shadow: 0 7px 18px rgba(255, 109, 0, .25) !important;
+        }
+        #custom-noti-popup a[href*="t.me"]:active { transform: scale(.98); }
+        @media (min-width: 600px) {
+            .noti-container { padding-top: 24px; }
+            .noti-card { padding: 18px; margin-bottom: 15px; }
+            #custom-noti-popup { padding: 22px !important; }
+        }
+
     </style>
 </head>
 <body>
@@ -156,7 +260,7 @@
             <div class="noti-content">
                 <h3>📢 লাইভ মিটিংয়ের সময়সূচি ঘোষণা!</h3>
                 <p>আজ রাত ৮ টায় আমাদের বিশেষ গুরুত্বপূর্ণ লাইভ মিটিং অনুষ্ঠিত হবে। সব মেম্বারদের উপস্থিত থাকার জন্য অনুরোধ করা হলো।</p>
-                <span class="noti-time"><i class="far fa-clock"></i> ১০ মিনিট আগে</span>
+            
             </div>
         </div>
 
@@ -168,7 +272,7 @@
             <div class="noti-content">
                 <h3>🎉 Mart-Lp তে স্বাগতম! জানুন আপনার কাজ</h3>
                 <p>আজই আপনার সফলতার যাত্রা শুরু করুন! ঘরে বসে কাজ করুন, প্রতিদিন আয়ের সুযোগ এবং ফ্রি ট্রেনিং নিন।</p>
-                <span class="noti-time"><i class="far fa-clock"></i> ২ ঘণ্টা আগে</span>
+             
             </div>
         </div>
 
@@ -176,16 +280,16 @@
 
     <!-- প্রফেশনাল পপআপ ওভারলে ও বক্স -->
     <div id="custom-noti-popup-overlay" onclick="closeCustomNotification(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(3px); z-index: 99998; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
-        <div id="custom-noti-popup" class="aypoth-popup-box" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 380px; background: white; color: #333; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); padding: 16px; z-index: 99999; border: 1px solid rgba(255, 126, 95, 0.2); box-sizing: border-box; animation: popupScale 0.25s ease; font-family: 'Poppins', sans-serif;">
+        <div id="custom-noti-popup" class="aypoth-popup-box" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 380px; background: #2a1909; color: #fff1cc; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); padding: 16px; z-index: 99999; border: 1px solid rgba(255, 183, 0, 0.55); box-sizing: border-box; animation: popupScale 0.25s ease; font-family: 'Poppins', sans-serif;">
                 
             <!-- প্রিমিয়াম ক্রস বাটন -->
-            <div onclick="closeCustomNotification(event)" style="position: absolute; top: -11px; right: -11px; width: 30px; height: 30px; background: linear-gradient(135deg, #ff5e62 0%, #ff9966 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(255, 94, 98, 0.4); z-index: 100000; line-height: 1;">
+            <div onclick="closeCustomNotification(event)" style="position: absolute; top: -11px; right: -11px; width: 30px; height: 30px; background: linear-gradient(135deg, #e65100 0%, #ffc107 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 8px rgba(255, 94, 98, 0.4); z-index: 100000; line-height: 1;">
                 &times;
             </div>
             
             <!-- পপআপ টাইটেল (কমলা-হলুদ ছোঁয়া) -->
-            <div style="text-align: center; margin-bottom: 12px; border-bottom: 2px solid #fff3ec; padding-bottom: 8px;">
-                <span id="popup-title" style="font-weight: 700; font-size: 15px; color: #ea580c;">🎉 Mart-Lp তে স্বাগতম! 🎉</span>
+            <div style="text-align: center; margin-bottom: 12px; border-bottom: 2px solid #6b3b0b; padding-bottom: 8px;">
+                <span id="popup-title" style="font-weight: 700; font-size: 15px; color: #ffd54f;">🎉 Mart-Lp তে স্বাগতম! 🎉</span>
             </div>
             
             <!-- কভার ছবি -->
@@ -215,22 +319,22 @@
             if (type === 'meeting') {
                 titleElem.innerText = "📢 লাইভ মিটিংয়ের বিস্তারিত";
                 contentElem.innerHTML = `
-                    <div style="margin: 0 0 8px 0; font-size: 12px; color: #1e293b; line-height: 1.5; text-align: left; background: #fff7ed; padding: 10px 12px; border-radius: 8px; border-left: 3.5px solid #f97316;">
-                        <b style="font-size: 13px; color: #c2410c; display: block; margin-bottom: 3px;">আজ রাত ৮:০০ টায় স্পেশাল মিটিং</b>
+                    <div style="margin: 0 0 8px 0; font-size: 12px; color: #fff1cc; line-height: 1.5; text-align: left; background: #4a2a0b; padding: 10px 12px; border-radius: 8px; border-left: 3.5px solid #ff9800;">
+                        <b style="font-size: 13px; color: #ffca28; display: block; margin-bottom: 3px;">আজ রাত ৮:০০ টায় স্পেশাল মিটিং</b>
                         আমাদের আজকের মিটিংয়ে নতুন আপডেট, কাজ করার সঠিক নিয়ম এবং আপনাদের প্রশ্নউত্তর পর্ব থাকবে। সবাই সময়মতো জয়েন করুন।<br>
-                        <span style="display: inline-block; margin-top: 6px; color: #9a3412; font-weight: 500;">⏰ সময়: রাত ৮:০০ টা | 💻 মাধ্যম: লাইভ সেশন</span>
+                        <span style="display: inline-block; margin-top: 6px; color: #ffd180; font-weight: 500;">⏰ সময়: রাত ৮:০০ টা | 💻 মাধ্যম: লাইভ সেশন</span>
                     </div>
                 `;
             } else if (type === 'welcome') {
                 titleElem.innerText = "🎉 Mart-Lp তে স্বাগতম! 🎉";
                 contentElem.innerHTML = `
-                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fffbeb; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
-                        <b style="font-size: 12.5px; color: #b45309;">বাংলাদেশের স্মার্ট ডিজিটাল আয়ের প্ল্যাটফর্ম</b><br>
+                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #fff1cc; line-height: 1.4; text-align: left; background: #4a2a0b; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #ffc107;">
+                        <b style="font-size: 12.5px; color: #ffd54f;">বাংলাদেশের স্মার্ট ডিজিটাল আয়ের প্ল্যাটফর্ম</b><br>
                         আজই আপনার সফলতার যাত্রা শুরু করুন! 
                         💼 ঘরে বসে কাজ করুন | 💰 প্রতিদিন আয়ের সুযোগ | 🎯 ফ্রি ট্রেনিং | 🚀 আজই যোগ দিন
                     </div>
-                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #1e293b; line-height: 1.4; text-align: left; background: #fff1f2; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #e11d48;">
-                        <b style="font-size: 12.5px; color: #be123c;">স্বপ্ন নয়, এবার বাস্তব আয়!</b><br>
+                    <div style="margin: 0 0 8px 0; font-size: 11.5px; color: #fff1cc; line-height: 1.4; text-align: left; background: #472018; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #ff5722;">
+                        <b style="font-size: 12.5px; color: #ffb4a8;">স্বপ্ন নয়, এবার বাস্তব আয়!</b><br>
                         আজই Mart-Lp পরিবারের সদস্য হোন<br>
                         ✅ ফ্রি গাইডলাইন | ✅ লাইভ সাপোর্ট | ✅ টিমওয়ার্ক | ✅ দ্রুত আয়ের সুযোগ
                     </div>
